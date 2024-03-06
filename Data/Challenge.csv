@@ -1,1 +1,6 @@
 "id","name","description","coordinates","date_start","date_end","id_user"
+1, "Collect plastics bags", "The goal is to collect as much plastic waste as possible in the park", "28.108963471047197, -15.41683044398473", "2024-04-05", "2024-04-05",1
+2, "Clean beach", "We need to clean up the beaches", "", "2024-03-10", "2024-03-10", 2
+3, "Walk to work", "Walk to work instead of taking your car", "", "2024-03-20", "2024-04-20", 3
+4, "Compost challenge", "The challenge is to divert organic waste from the landfill by composting it daily", "", "2024-05-01", "2024-05-31", 4
+5,"Zero waste meal challenge", " Prepare meals using only ingredients that generate minimal waste", "", "2024-06-05", "2024-06-12", 5
