@@ -1,11 +1,11 @@
 "id","name","description","coordinates","date_start","date_end"
-"1", "Beach Cleanup"
-"2", "Book Swap"
-"3", "Clothes Swap"
-"4", ""
-"5",
-"6",
-"7",
-"8",
-"9",
-"10",
+"1", "Beach Cleanup", "This Event has focus on cleaning the beaches", "28.136985, -15.438174", "2024-01-09", "2024-01-09"
+"2", "Book Swap", "This Event has focus on helping eachother out and swap books", "28.120974, -15.437652", "2024-02-18", "2024-02-18"
+"3", "Clothes Swap", "This Event has focus on helping eachother out and swap clothes or give it away", "28.140776, -15.431231", "2024-03-16", "2024-03-16"
+"4", "Beach Cleanup", "This Event has focus on cleaning the beaches", "28.136985, -15.438174", "2024-04-28", "2024-04-28"
+"5", "Clothes Swap", "This Event has focus on helping eachother out and swap clothes or give it away", "28.140776, -15.431231", "2024-05-12", "2024-05-12"
+"6", "Book Swap", "This Event has focus on helping eachother out and swap books", "28.120974, -15.437652", "2024-06-24", "2024-06-24"
+"7", "Clothes Swap", "This Event has focus on helping eachother out and swap clothes or give it away", "28.140776, -15.431231", "2024-07-02", "2024-07-02"
+"8", "Book Swap", "This Event has focus on helping eachother out and swap books", "28.120974, -15.437652", "2024-09-17", "2024-09-17"
+"9", "Beach Cleanup", "This Event has focus on cleaning the beaches", "28.136985, -15.438174", "2024-11-20", "2024-11-20"
+"10", "Clothes Swap", "This Event has focus on helping eachother out and swap clothes or give it away", "28.140776, -15.431231", "2025-01-8", "2025-01-8"
