@@ -1,5 +1,27 @@
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
+interface SupabaseContextProps {
+    supabase: SupabaseClient | null;
+}
 
+const SupabaseContext = createContext<SupabaseContextProps>({ supabase: null });
 
+export const SupabaseProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+    const [supabase, setSupabase] = useState<SupabaseClient | null>(null);
 
-export const SupabaseProvider = {}
+    const supabaseUrl = 'https://hiqgrytlzaxpaneovggu.supabase.co';
+    const supabaseKey = import.meta.env.VITE_SUPABASE_KEY as string;
+
+    useEffect(() => {
+        setSupabase(createClient(supabaseUrl, supabaseKey));
+    }, [supabaseKey]);
+
+    return (
+        <SupabaseContext.Provider value={{ supabase }}>
+            {children}
+        </SupabaseContext.Provider>
+    );
+};
+
+export const useSupabase = (): SupabaseContextProps => useContext(SupabaseContext);
