@@ -1,14 +1,9 @@
-import { useSupabase } from "../Providers/SupabaseProvider";
-// import { useParams } from "react-router-dom";
-// import { useEffect, useState } from "react";
-import axios from 'axios';
+import axiosInstance from "./axios.service";
 
 const eventTable = 'Event';
-// const userEventTable = 'UserEvent';
-const { supabase } = useSupabase();
-const apiUrl: string = import.meta.env.VITE_API_URL;
 
 export default function EventService() {
+
     interface Event {
         id: number;
         name: string;
@@ -18,65 +13,63 @@ export default function EventService() {
         date_start: Date;
         date_end: Date;
     }
-    
+
     const getAllEvents = async (): Promise<Event[]> => {
         try {
-            const response = await axios.get<Event[]>(`${apiUrl}${eventTable}`);
+            const response = await axiosInstance.get<Event[]>(`/${eventTable}`);
             return response.data;
         } catch (error) {
             console.error('Error fetching events:', error);
-            throw error; // Re-lanzamos el error para manejarlo en otro lugar si es necesario
+            throw error;
         }
     };
 
 
-    const getEventById = async (eventId: number): Promise<Event | null> => {
+    const getEventById = async (eventId: number): Promise<Event> => {
         try {
-            const response = await axios.get<Event>(`${apiUrl}${eventTable}/${eventId}`);
+            const response = await axiosInstance.get<Event>(`/${eventTable}?id=eq.${eventId}`);
             return response.data;
-        } catch (error: any) {
-            if (error.response && error.response.status === 404) {
-                return null;
-            } else {
-                console.error('Error fetching event by ID:', error);
-                throw error;
-            }
+        } catch (error) {
+            console.error(`Error fetching event with id ${eventId} :`, error);
+            throw error;
         }
     };
 
+    //rember to do a post, the infotmation must be like this:
+    //{
+    //  "id:" 1,
+    //  "name": "..."
+    //  ...
+    // }
 
-    async function createEvent(eventData: any) {
-        if (supabase) {
-            const { data, error } = await supabase.from(eventTable).insert(eventData);
-            if (error) {
-                console.error("Error creating event:", error.message);
-            } else {
-                return data;
-            }
+    const createEvent = async (eventData: Event): Promise<Event> => {
+        try {
+            const response = await axiosInstance.post<Event>(`/${eventTable}`, eventData);
+            return response.data;
+        } catch (error) {
+            console.error('Error creating event:', error);
+            throw error;
         }
-    }
+    };
+    
+    const updateEvent = async (eventId: number, eventData: Event): Promise<Event> => {
+        try {
+            const response = await axiosInstance.patch<Event>(`/${eventTable}?id=eq.${eventId}`, eventData);
+            return response.data;
+        } catch (error) {
+            console.error(`Error updating event with id ${eventId} :`, error);
+            throw error;
+        }
+    };
 
-    const updateEvent = async (eventId: string, eventData: any) => {
-        if (supabase) {
-            const { data, error } = await supabase.from(eventTable).update(eventData).eq('id', eventId)
-            if (error) {
-                console.error("Error updating event:", error.message)
-            } else {
-                return data;
-            }
+    const deleteEvent = async (eventId: number): Promise<void> => {
+        try {
+            await axiosInstance.delete(`/${eventTable}?id=eq.${eventId}`);
+        } catch (error) {
+            console.error(`Error deleting event with id ${eventId} :`, error);
+            throw error;
         }
-    }
-
-    const deleteEvent = async (eventId: string) => {
-        if (supabase) {
-            const { data, error } = await supabase.from(eventTable).delete().eq('id', eventId)
-            if (error) {
-                console.error("Error deleting event:", error.message)
-            } else {
-                return data;
-            }
-        }
-    }
+    };
 
     return {
         getAllEvents,
@@ -86,7 +79,3 @@ export default function EventService() {
         deleteEvent
     };
 }
-
-
-
-

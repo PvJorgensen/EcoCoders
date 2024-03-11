@@ -1,0 +1,25 @@
+/* CircleComponent.scss */
+.circle {
+    border-radius: 50%;
+    background-color: lightgray;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    .innerCircle {
+      width: 160px;
+      height: 160px;
+      border-color: blue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      h2 {
+        font-size: 1.5rem;
+        color: white;
+      }
+    }
+  }
+  
