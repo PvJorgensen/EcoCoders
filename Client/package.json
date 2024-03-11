@@ -17,8 +17,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-map-gl": "^7.1.7",
-    "supabase": "^1.148.6",
-    "vaul": "^0.9.0"
+    "react-router-dom": "^6.22.2",
+    "supabase": "^1.148.6"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",
@@ -29,6 +29,7 @@
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "sass": "^1.71.1",
     "typescript": "^5.2.2",
     "vite": "^5.1.4"
   }
