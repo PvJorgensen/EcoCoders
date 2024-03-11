@@ -1,0 +1,28 @@
+.drawer {
+    width: 100%;
+    height: 45%;
+    background-color: #fff;
+    position: fixed;
+    bottom: -45%;
+    overflow-y: auto;
+    transition: bottom 0.3s ease-in-out; /* Cambiado de 'right' a 'bottom' */
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 30px 30px 0 0;
+}
+
+.drawer.open {
+    bottom: 0;
+}
+
+.drawer-content {
+    padding: 20px;
+}
+
+.swipe{
+    height: 6px;
+    width: 119px;
+    margin: 0 auto;
+    border-radius: 1rem;
+    background-color: grey;
+}
