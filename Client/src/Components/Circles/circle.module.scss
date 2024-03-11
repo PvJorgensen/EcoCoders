@@ -1,25 +1,61 @@
-/* CircleComponent.scss */
+.circleWrapper {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    width: 100%;
+    height: 20vh;
+}
 .circle {
+    position: absolute;
     border-radius: 50%;
     background-color: lightgray;
-    width: 100px;
-    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-  
-    .innerCircle {
-      width: 160px;
-      height: 160px;
-      border-color: blue;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  
+    border: none;
+    font-size: 16px;
+    letter-spacing: 2px;
+    font-weight: 400;
       h2 {
         font-size: 1.5rem;
         color: white;
       }
     }
-  }
-  
+
+.circleone {
+    background-color: black;
+    left: 32%;
+    rotate: 10deg;
+    z-index: 9999;
+    width: 100px;
+    height: 100px;
+    margin-top: 35px;
+    background-color: #F7EF81;
+}
+
+.circletwo {
+    color: white;
+    left: 15%;
+    rotate: -20deg;
+    width: 95px;
+    height: 95px;
+    background-color: #1E6091;
+}
+
+.circlethree {
+    width: 80px;
+    height: 80px;
+    left: 50%;
+    rotate: 20deg;
+    background-color: #E6A8BF;
+}
+
+.circlefour {
+    width: 70px;
+    height: 70px;
+    left: 60%;
+    margin-top: 60px;
+    rotate: -20deg;
+    background-color: #B9FBC0;
+}

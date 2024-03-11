@@ -4,7 +4,7 @@ import { Card } from './Card'; // Sørg for at importere din Card-komponent korr
 const arrcards = [
   { title: 'Events', text: 'There is many events happing in your city. Check them out!', icon: 'events.svg' },
   { title: 'Challenges', text: 'You can create challenges and invite your frends to take part', icon: 'Challenges.svg' },
-  { title: 'Fiends', text: 'Check out what challenges your friends have been completing', icon: 'Friends.svg' },
+  { title: 'Friends', text: 'Check out what challenges your friends have been completing', icon: 'Friends.svg' },
 ];
 
 export const Cards: React.FC = () => {

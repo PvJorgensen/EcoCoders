@@ -6,7 +6,7 @@ interface CardProps {
   icon: string;
 }
 
-export const Card: React.FC<CardProps> = ({ title, text, icon }) => {
+export const Card: React.FC<CardProps> = ({ title, text, icon, }) => {
   return (
     <div className={styles.card}>
       <img src={icon} alt="" />
