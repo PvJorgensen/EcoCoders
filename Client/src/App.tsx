@@ -1,11 +1,12 @@
 import './App.css'
 // import { Map } from './Components/maptest/maptest'
-import { HomePage } from './Pages/HomePage/HomePage'
+import { AppRouter } from './Components/AppRouter/AppRouter'
+
 function App() {
 
   return (
     <>
-      <HomePage></HomePage>
+    <AppRouter></AppRouter>
     </>
   )
 }

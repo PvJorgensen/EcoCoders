@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
 import ReactMapGL, {
     Marker,
-    NavigationControl,
-    FullscreenControl,
-    ScaleControl,
     GeolocateControl
 } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Pin from './pin';
-import GreenPoints from  '../../assets/GreenPoints.svg'
+import GreenPoints from '../../assets/GreenPoints.svg'
+import DrawerComponents from '../drawer/drawer';
 
 interface Mark {
     lat: number;
@@ -18,9 +16,10 @@ interface Mark {
 interface MapProps {
     marks: Mark[] | null;
     greenpoints: Mark[] | null;
+    selectable: boolean;
 }
 
-const Map: React.FC<MapProps> = ({marks, greenpoints}) => {
+const Map: React.FC<MapProps> = ({ marks, greenpoints, selectable }) => {
     const token = import.meta.env.VITE_MAPBOX_TOKEN as string;
 
     const [viewport, setViewport] = React.useState({
@@ -31,9 +30,32 @@ const Map: React.FC<MapProps> = ({marks, greenpoints}) => {
         pitch: 0
     });
 
+    const [clickedCoords, setClickedCoords] = React.useState<Mark | null>(null);
+
+    const [openDrawer,SetopenDrawer] = React.useState(false);
+
+    const closeDrawer = () => {
+        SetopenDrawer(false)
+    }
+
+    const handleClick = (lng: number, lat: number) => {
+        console.log('found');
+        if (selectable) {
+            const coords:Mark = {lat, lng};
+            setClickedCoords(coords);
+            console.log(clickedCoords);
+        }
+    };
+
+    const handleClickMarker  = () => {        
+        if(!openDrawer){
+            SetopenDrawer(true);
+        }
+    }
+
     useEffect(() => {
         if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(function(position) {
+            navigator.geolocation.getCurrentPosition(function (position) {
                 setViewport({
                     ...viewport,
                     latitude: position.coords.latitude,
@@ -45,6 +67,19 @@ const Map: React.FC<MapProps> = ({marks, greenpoints}) => {
         }
     }, []);
 
+    const selectablePin = React.useMemo(
+        () =>
+            clickedCoords && (
+                <Marker
+                    longitude={clickedCoords.lng}
+                    latitude={clickedCoords.lat}
+                    anchor="bottom"
+                >
+                    <Pin />
+                </Marker>
+            ),
+        [clickedCoords]
+    );
 
     const pins = React.useMemo(
         () =>
@@ -54,28 +89,23 @@ const Map: React.FC<MapProps> = ({marks, greenpoints}) => {
                     longitude={mark.lng}
                     latitude={mark.lat}
                     anchor="bottom"
-                    onClick={e => {
-                        e.originalEvent.stopPropagation();
-                    }}
+                    onClick={handleClickMarker}
                 >
-                    <Pin/>
+                    <Pin />
                 </Marker>
             )),
         [marks]
     );
-    
 
     const GreenPointspins = React.useMemo(
         () =>
-             greenpoints && greenpoints.map((mark, index) => (
+            greenpoints && greenpoints.map((mark, index) => (
                 <Marker
                     key={`marker-${index}`}
                     longitude={mark.lng}
                     latitude={mark.lat}
                     anchor="bottom"
-                    onClick={e => {
-                        e.originalEvent.stopPropagation();
-                    }}
+                    onClick={handleClickMarker}
                 >
                     <img src={GreenPoints} alt="greenpoint" />
                 </Marker>
@@ -88,17 +118,17 @@ const Map: React.FC<MapProps> = ({marks, greenpoints}) => {
             <ReactMapGL
                 {...viewport}
                 onMove={evt => setViewport(evt.viewState)}
-                mapStyle="mapbox://styles/mapbox/streets-v9"
+                mapStyle="mapbox://styles/mapbox/streets-v12"
                 //@ts-ignore
                 projection='globe'
                 mapboxAccessToken={token}
+                onClick={evt => handleClick(evt.lngLat.lng, evt.lngLat.lat)}
             >
                 <GeolocateControl position="top-left" />
-                <FullscreenControl position="top-left" />
-                <NavigationControl position="top-left" />
-                <ScaleControl />
                 {GreenPointspins}
                 {pins}
+                {selectablePin}
+                <DrawerComponents isOpen={openDrawer} onClose={closeDrawer}/>
             </ReactMapGL>
         </>
     );

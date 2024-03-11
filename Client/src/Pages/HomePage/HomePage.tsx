@@ -2,6 +2,7 @@
 import { Cards } from "../../Components/Cards/Cards"
 import styles from "./Hpage.module.scss"
 import { Circle } from "../../Components/Circles/Circle"
+
 export const HomePage = () => {
   return (
     <>
