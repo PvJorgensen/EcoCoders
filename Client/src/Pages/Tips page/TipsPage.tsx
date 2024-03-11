@@ -1,76 +1,44 @@
 import { Card, Input } from 'antd';
 import type { SearchProps } from 'antd/es/input/Search';
-import { useEffect, useState } from 'react';
-import { useSupabase } from '../../Providers/SupabaseProvider/SupabaseProvider';
 import { Link } from 'react-router-dom'; 
+import styles from "./TPage.module.scss"
 
-interface Tip {
-    id: number;
-    name: string;
-    description: string;
-    category: string;
-}
 
 export const TipsPage = () => {
     const { Search } = Input;
-    const [tips, setTips] = useState<Tip[]>([]);
-    const [displayedCategories, setDisplayedCategories] = useState<Set<string>>(new Set());
-    const { supabase } = useSupabase(); 
-
-    useEffect(() => {
-        async function fetchTips() {
-            if (supabase) {
-                try {
-                    const { data, error } = await supabase
-                        .from ('Tips')
-                        .select('id, name, description, category');
-    
-                    if (error) {
-                        throw error;
-                    }
-    
-                    setTips(data || []);
-                } catch (error) {
-                    console.error('Error retrieving tips:', (error as Error) .message);
-                }
-            }
-        }
-
-        if (supabase) {
-            fetchTips();
-        }
-    }, [supabase]);
-
     const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
+   
     return (
         <>
-            <h3>Welcome to your eco encyclopedia!</h3>
+            <h3 className={`${styles.h3} `}>Welcome to your eco-encyclopedia!</h3>
 
-            <Card title="DAILY TIPS"  style={{ width: 300 }}>
-               <p>If a pizza box is cheessy or oily, compost it if possible. Otherwise put it in the trash</p>
-                <img></img>
-            </Card>
-
-            <Search placeholder="" onSearch={onSearch} style={{ width: 200 }} />
+            <Card style={{ width: 348, height: 185 }} className={`${styles.topCard} `}>
+                <h2  style={{textAlign:"center" }}> DAILY TIPS</h2>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                 <p style={{ flex: 1, margin: 0 }}>
+                      If a pizza box is cheesy or oily, compost it if possible. Otherwise put it in the trash
+                 </p>
+               <img 
+                  src="https://th.bing.com/th?id=OIP.8ti7pBA9iqulyrvakdFG0QHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2"
+                  style={{ width: 121, height: 121, marginRight: '10px' }} 
+                  alt="Tip Image"
+                 />  
+                </div>
+             </Card>
+            <Search placeholder="Search" onSearch={onSearch} style={{ width: 349, height:36}} className={`${styles.searchbar} `} />
 
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-            {tips.map(tip => {
-                    if (!displayedCategories.has(tip.category)) {
-
-                        // Add the category to the set of displayed categories
-                        setDisplayedCategories(prevSet => new Set(prevSet.add(tip.category)));
-
-                        // Show the map only if the category has not already been displayed
+          
+                  {tips.map(tip => {
+                    
                         return (
                             <Link  to={`/categorizedTips/${encodeURIComponent(tip.category)}`  }  key={tip.id}> 
-                                <Card title={tip.category} style={{ width: 200, margin: '10px', borderRadius: '10px' }}>
+                                <Card title={tip.category} style={{ width: 353, height:144, margin: '10px', borderRadius: '10px', border:" 1px solid #A8DEE6" }}>
                                </Card>
                            </Link>
                         );
-                    } else {
-                        return null; 
-                    }
-                })}
+                    
+                      })}
             </div>
         </>
     );
