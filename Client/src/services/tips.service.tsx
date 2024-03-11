@@ -80,6 +80,7 @@ export default function TipsService() {
 
     return {
         getAllTips,
+        getAllTipsByCategory,
         getTipsById,
         createTips,
         updateTips,
