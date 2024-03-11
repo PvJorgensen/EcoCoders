@@ -1,6 +1,7 @@
 import axiosInstance from "./axios.service";
 
 const challengeTable = 'Challenge';
+const userJoinChallengeTable = 'UserChallenge';
 
 export default function ChallengeService() {
     
@@ -10,8 +11,8 @@ export default function ChallengeService() {
         description: string;
         longitude: number;
         latitude: number;
-        date_start: Date;
-        date_end: Date;
+        date_start: number; //In typeScript there is no TimeStamp, so we have to use number
+        date_end: number; //In typeScript there is no TimeStamp, so we have to use number
         id_user: number;
     }
 
@@ -72,11 +73,59 @@ export default function ChallengeService() {
         }
     };
 
+
+    // Find The challenges from a user
+    const getChallengesByUserId = async (userId: number): Promise<Challenge[]> => {
+        try {
+            const response = await axiosInstance.get<Challenge[]>(`/${userJoinChallengeTable}?id_user=eq.${userId}`);
+            return response.data;
+        } catch (error) {
+            console.error(`Error fetching challenges for user with id ${userId} :`, error);
+            throw error;
+        }
+    };
+
+    // Find The challenges from a user
+    const getUsersInOneChallenge = async (challengeId: number): Promise<Challenge[]> => {
+        try {
+            const response = await axiosInstance.get<Challenge[]>(`/${userJoinChallengeTable}?id_challenge=eq.${challengeId}`);
+            return response.data;
+        } catch (error) {
+            console.error(`Error fetching users for challenge with id ${challengeId} :`, error);
+            throw error;
+        }
+    };
+
+    // Join a Challenge
+    const joinChallenge = async (userId: number, challengeId: number): Promise<void> => {
+        try {
+            const userChallengeData = { id_user: userId, id_challenge: challengeId };
+            await axiosInstance.post(`/${userJoinChallengeTable}`, userChallengeData);
+        } catch (error) {
+            console.error(`Error joining challenge with id ${challengeId} :`, error);
+            throw error;
+        }
+    };
+
+    // Leave a Challenge
+    const leaveChallenge = async (userId: number, challengeId: number): Promise<void> => {
+        try {
+            await axiosInstance.delete(`/${userJoinChallengeTable}?id_user=eq.${userId}&id_challenge=eq.${challengeId}`);
+        } catch (error) {
+            console.error(`Error leaving challenge with id ${challengeId} :`, error);
+            throw error;
+        }
+    };
+
     return {
         getAllChallenges,
         getChallengeById,
         createChallenge,
         updateChallenge,
-        deleteChallenge
+        deleteChallenge,
+        getUsersInOneChallenge,
+        getChallengesByUserId,
+        joinChallenge,
+        leaveChallenge
     };
 }

@@ -11,9 +11,19 @@ export default function TipsService() {
         category: string;
     }
 
-    const getAllTipss = async (): Promise<Tips[]> => {
+    const getAllTips = async (): Promise<Tips[]> => {
         try {
             const response = await axiosInstance.get<Tips[]>(`/${tipsTable}`);
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching Tipss:', error);
+            throw error;
+        }
+    };
+
+    const getAllTipsByCategory = async (category: string): Promise<Tips[]> => {
+        try {
+            const response = await axiosInstance.get<Tips[]>(`/${tipsTable}?category=eq.${category}`);
             return response.data;
         } catch (error) {
             console.error('Error fetching Tipss:', error);
@@ -69,7 +79,7 @@ export default function TipsService() {
     };
 
     return {
-        getAllTipss,
+        getAllTips,
         getTipsById,
         createTips,
         updateTips,
