@@ -3,6 +3,13 @@ import styles from './circle.module.scss'
 
 export const Circle = () => {
   return (
+<<<<<<< HEAD
+    <div className={styles.circle}>
+    <div className={styles.innerCircle}>
+      <h2>Events</h2>
+    </div>
+  </div>
+=======
     <div className={styles.circleWrapper}>
         <button className={`${styles.circle} ${styles.circleone}`}>
             EVENTS
@@ -20,5 +27,6 @@ export const Circle = () => {
             TIPS
         </button>
     </div>
+>>>>>>> 84bccfacbe9977be28907b8fafc2c76a4bb2e705
   )
 }
