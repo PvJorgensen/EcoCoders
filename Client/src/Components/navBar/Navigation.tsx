@@ -5,9 +5,9 @@ import { EnvironmentOutlined, UserOutlined, BulbOutlined, GlobalOutlined } from 
 export const Navigation = () => {
   return (
     <nav className={styles.navbar}>
-      <Link to="/PageNotFound"><EnvironmentOutlined /></Link>
-      <Link to="/PageNotFound"><GlobalOutlined /></Link>
-      <Link to="/PageNotFound"><BulbOutlined /></Link>
+      <Link to="/map"><EnvironmentOutlined /></Link>
+      <Link to="/"><GlobalOutlined /></Link>
+      <Link to="/tips"><BulbOutlined /></Link>
       <Link to="/PageNotFound"><UserOutlined /></Link>
     </nav>
   )
