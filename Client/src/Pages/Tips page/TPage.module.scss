@@ -27,5 +27,37 @@
         color: #1E6091;
       }
 
+      h1 {
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style:normal;
+        text-align: center;
+        
+      }
+
      
+      .gridContainer {
+        display: grid;
+        grid-template-columns: repeat(2, 0.5fr); 
+         text-align: 'center';
+         margin-top: '5px';
+         justify-content: 'center' ;
+         margin-left: 5%;
+         width: '100%';
+         max-width: '348px' 
+    }
     
+   
+    .card {
+        background-color: white;
+        display: grid;
+        margin: auto;
+        margin-top: 4%;
+        border-radius: 20px;
+        text-decoration: none;
+        color: black;
+        width: 166px;
+         height: 144px;
+          margin-left: '20px';
+         border: 4px solid #A8DEE6 ;
+    }
