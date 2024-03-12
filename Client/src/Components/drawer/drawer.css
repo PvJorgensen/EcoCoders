@@ -13,7 +13,6 @@
 
 .drawer.open {
     bottom: 0;
-    transition: bottom 0.3s ease-in-out;
 }
 
 .drawer-content {

@@ -4,8 +4,6 @@ import { TipsPage } from "../../Pages/Tips page/TipsPage"
 import { PageNotFound } from "../../Pages/PageNotFound/PageNotFound"
 import { Events } from "../../Pages/EventsPage/Events"
 
-
-
 export const AppRouter = () => {
     return (
         <Routes>
@@ -16,6 +14,7 @@ export const AppRouter = () => {
             <Route path="*" element={<PageNotFound />}></Route>
 
             <Route path="events" element={<Events />} />
+
 
         </Routes>
         
