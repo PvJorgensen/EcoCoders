@@ -1,8 +1,10 @@
 
 import { Card } from 'antd';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useSupabase } from '../../Providers/SupabaseProvider/SupabaseProvider';
+import {useEffect,useState} from 'react';
+import styles from './TPage.module.scss';
+import TipsService from '../../services/tips.service';
+import { useParams } from 'react-router-dom'; 
+import { Navigation } from "../../Components/navBar/Navigation";
 
 interface Tip {
     id: number;
@@ -10,50 +12,55 @@ interface Tip {
     description: string;
     category: string;
 }
-
 export const CategorizedTips = () => {
-    const { categoryName } = useParams<{ categoryName: string }>(); //Retrieve the category name from the URL parameters
-    const [categoryTips, setCategoryTips] = useState<Tip[]>([]);
-    const { supabase } = useSupabase();
+    
+    const { category } = useParams<{ category: string }>(); //Retrieve the category name from the URL parameters
+    const { getAllTipss } = TipsService();
+    const [tips, setTips] = useState<Tip[]>([]);
 
     useEffect(() => {
-        async function fetchCategoryTips() {
-            if (supabase) {
-                try {
-                    const { data, error } = await supabase
-                        .from('Tips')
-                        .select('id, name, description, category')
-                        .eq('category', categoryName); // Filter Tips by Category
-    
-                    if (error) {
-                        throw error;
-                    }
-    
-                    setCategoryTips(data || []);
-                } catch (error) {
-                    console.error('Error retrieving categorized tips:', (error as Error).message);
-                }
+        async function fetchTips() {
+            try {
+                const tipsData = await getAllTipss();
+               //
+                const filteredTips = tipsData.filter(tip => tip.category === category);
+                setTips(filteredTips);
+            } catch (error) {
+                console.error('Error fetching tips:', error);
             }
         }
-
-        if (supabase) {
-            fetchCategoryTips();
-        }
-    }, [categoryName, supabase]);
+        fetchTips();
+    }, [category]);
+     
 
     return (
         <>
-        <Card title={categoryName}  style={{ width: 300 }}>
-               
+        <div style={{ justifyContent:'center' }}>
+        <Card  style={{ width: 348, height: 100 }} className={`${styles.topCard} `}>
+           <h1> {category}</h1>
          </Card>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                {categoryTips.map(tip => (
-                    <Card key={tip.id} title={tip.name} style={{ width: 200, margin: '10px', borderRadius: '10px' }}>
-                        <p>{tip.description}</p>
-                    </Card>
-                ))}
+         <div className={styles.gridContainer} >
+                {Array.isArray(tips) ? (
+                    tips.map((tip) => (
+                        <Card className={styles.card} >         
+                        <div key={tip.id} >
+                        <p>{tip.name}</p>
+                       </div>
+                        </Card>
+
+                        
+                      
+                    ))
+                ) : (
+                    <p>No events available</p>
+                )}
             </div>
+        </div>
+            
+        <Navigation />
+        
         </>
     );
 };
+

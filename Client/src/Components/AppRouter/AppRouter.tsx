@@ -13,7 +13,7 @@ export const AppRouter = () => {
             <Route index element={<HomePage />}></Route>
 
             <Route path="tips" element={<TipsPage />} />
-            <Route path="categorizedTips" element={<CategorizedTips />} />
+            <Route path="categorizedTips/:category" element={<CategorizedTips />} />
 
             <Route path="*" element={<PageNotFound />}></Route>
 
