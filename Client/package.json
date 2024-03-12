@@ -10,9 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
+=======
+    "@ant-design/icons": "^5.3.1",
+>>>>>>> 5a16d297c81a6afb7ff83cf472f0ee27806cab33
     "@supabase/supabase-js": "^2.39.7",
     "antd": "^5.15.1",
     "axios": "^1.6.7",
