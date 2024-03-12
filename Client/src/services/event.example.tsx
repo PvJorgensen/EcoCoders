@@ -14,6 +14,7 @@ export const Example = () => {
         date_start: number;
         date_end: number;
     }
+    
     const { getAllEvents } = EventService();
     const [events, setEvents] = useState<Event[]>([]);
 
