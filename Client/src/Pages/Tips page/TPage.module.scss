@@ -1,0 +1,63 @@
+.topCard {
+    margin-top: 10px;
+    width: 80%;
+    background-color: white;
+    border-radius: 20px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    border: 3px solid #A8DEE6;
+
+    h3 {
+        margin-bottom: 2px;
+        margin-top: 7px;
+        text-align: left;
+        padding-left: 20px;
+      
+    }
+    
+    
+}
+
+
+    h2 {
+        font-family: "Roboto", sans-serif;
+        font-weight: 700;
+        font-style:normal;
+        text-align: center;
+        color: #1E6091;
+      }
+
+      h1 {
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style:normal;
+        text-align: center;
+        
+      }
+
+     
+      .gridContainer {
+        display: grid;
+        grid-template-columns: repeat(2, 0.5fr); 
+         text-align: 'center';
+         margin-top: '5px';
+         justify-content: 'center' ;
+         margin-left: 5%;
+         width: '100%';
+         max-width: '348px' 
+    }
+    
+   
+    .card {
+        background-color: white;
+        display: grid;
+        margin: auto;
+        margin-top: 4%;
+        border-radius: 20px;
+        text-decoration: none;
+        color: black;
+        width: 166px;
+         height: 144px;
+          margin-left: '20px';
+         border: 4px solid #A8DEE6 ;
+    }

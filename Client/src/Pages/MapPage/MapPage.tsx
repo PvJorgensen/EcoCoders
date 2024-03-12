@@ -9,7 +9,7 @@ interface MapPageProps {
 
 }
 
-const MapPage: React.FC<MapPageProps> = () => {
+export const MapPage: React.FC<MapPageProps> = () => {
 
     const [drawer, SetDrawer] = React.useState(false);
 
@@ -31,5 +31,3 @@ const MapPage: React.FC<MapPageProps> = () => {
         </div>
     )
 }
-
-export default MapPage;
