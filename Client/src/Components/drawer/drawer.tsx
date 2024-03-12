@@ -16,7 +16,6 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose }) => {
     const handleTouchStart = (event: TouchEvent) => {
       if (drawerRef.current) {
         setStartY(event.touches[0].clientY);
-        setIsClosing(false);
       }
     };
 
@@ -34,10 +33,10 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose }) => {
     const handleTouchEnd = () => {
       const closeThreshold = 50;
 
+      setIsClosing(true);
       if (offsetY > closeThreshold) {
-        setIsClosing(true);
         setOffsetY(0);
-        onClose(); 
+        onClose();
       } else {
         setOffsetY(0);
       }
@@ -60,8 +59,12 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose }) => {
     transform: `translateY(${offsetY}px)`,
   };
 
+  useEffect(() => {
+    if(!isOpen) setIsClosing(false);
+  }, [isOpen]);
+
   return (
-    <div className={`drawer ${isOpen && !isClosing ? "open" : ""}`} style={drawerStyle} ref={drawerRef}>
+    <div className={`drawer ${isOpen? "open" : ""}`} style={drawerStyle} ref={drawerRef}>
       <div className="drawer-content">
         <div className="swipe" />
       </div>
