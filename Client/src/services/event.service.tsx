@@ -25,9 +25,9 @@ export default function EventService() {
     };
 
 
-    const getEventById = async (eventId: number): Promise<Event> => {
+    const getEventById = async (eventId: number): Promise<Event[]> => {
         try {
-            const response = await axiosInstance.get<Event>(`/${eventTable}?id=eq.${eventId}`);
+            const response = await axiosInstance.get<Event[]>(`/${eventTable}?id=eq.${eventId}`);
             return response.data;
         } catch (error) {
             console.error(`Error fetching event with id ${eventId} :`, error);

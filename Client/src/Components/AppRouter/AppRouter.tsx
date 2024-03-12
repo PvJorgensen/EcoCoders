@@ -5,6 +5,7 @@ import { PageNotFound } from "../../Pages/PageNotFound/PageNotFound"
 import { Events } from "../../Pages/EventsPage/Events"
 import { MapPage } from "../../Pages/MapPage/MapPage"
 import { CategorizedTips } from "../../Pages/Tips page/CategorizedTips"
+import { SingleEvent } from "../../Pages/EventsPage/SingleEvent"
 
 
 export const AppRouter = () => {
@@ -20,6 +21,8 @@ export const AppRouter = () => {
             <Route path="events" element={<Events />} />
 
             <Route path="map" element={<MapPage />}></Route>
+
+            <Route path="event/:id" element={<SingleEvent />}></Route>  
         </Routes>
         
         
