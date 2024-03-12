@@ -1,0 +1,23 @@
+.topCard {
+    width: 328px;
+    height: 130px;
+    background-color: white;
+    border-radius: 20px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    border: 3px solid #A8DEE6;
+    text-align: left;
+    h3 {
+        font-size: 24px;
+        margin-bottom: 8px;
+        margin-top: 16px;
+        padding-left: 20px;
+    }
+    p {
+        margin-top: 4px;
+        padding-left: 20px;
+    }
+}
