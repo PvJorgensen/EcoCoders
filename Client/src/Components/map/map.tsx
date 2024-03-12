@@ -9,6 +9,7 @@ import GreenPoints from '../../assets/GreenPoints.svg'
 import DrawerComponents from '../drawer/drawer';
 
 interface Mark {
+    id: number;
     lat: number;
     lng: number;
 }
@@ -25,7 +26,7 @@ const Map: React.FC<MapProps> = ({ marks, greenpoints, selectable }) => {
     const [viewport, setViewport] = React.useState({
         latitude: 28.013004,
         longitude: -15.425111,
-        zoom: 10,
+        zoom: 0.8,
         bearing: 0,
         pitch: 0
     });
@@ -39,9 +40,9 @@ const Map: React.FC<MapProps> = ({ marks, greenpoints, selectable }) => {
     }
 
     const handleClick = (lng: number, lat: number) => {
-        console.log('found');
+        const id = 0;
         if (selectable) {
-            const coords:Mark = {lat, lng};
+            const coords = {id, lat, lng};
             setClickedCoords(coords);
             console.log(clickedCoords);
         }
@@ -53,11 +54,17 @@ const Map: React.FC<MapProps> = ({ marks, greenpoints, selectable }) => {
         }
     }
 
+    useEffect(() =>{
+        console.log(openDrawer);
+        
+    }, [openDrawer])
+
     useEffect(() => {
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(function (position) {
                 setViewport({
                     ...viewport,
+                    zoom: 10,
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude
                 });
@@ -110,7 +117,7 @@ const Map: React.FC<MapProps> = ({ marks, greenpoints, selectable }) => {
                     <img src={GreenPoints} alt="greenpoint" />
                 </Marker>
             )),
-        []
+        [greenpoints]
     );
 
     return (

@@ -20,15 +20,15 @@ export const EventCard: React.FC<EventCardProps> = ({ id, name, description, lon
         <div className={style.textWrapper}>
           <div className={style.mainText}>
             <h3>{name}</h3>
-            <p>Description: {description}</p>
+            <p>{description}</p>
           </div>
           <div className={style.location}>
-            <p>Longitude: {longitude}</p>
-            <p>Latitude: {latitude}</p>
+            <p>{longitude}</p>
+            <p>{latitude}</p>
           </div>
           <div className={style.dates}>
-            <p>Start Date: {new Date(date_start).toDateString()}</p>
-            <p>End Date: {new Date(date_end).toDateString()}</p>
+            <p>{new Date(date_start).toDateString()}</p>
+            <p>{new Date(date_end).toDateString()}</p>
           </div>
         </div>
       </div>

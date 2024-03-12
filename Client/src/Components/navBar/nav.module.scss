@@ -4,12 +4,13 @@
     justify-content: space-evenly;
     font-size: 30px;
     border-radius: 28px;
-    height: 7vh;
     width: 95%;
-    margin: auto;
+    height: 7vh;
+    margin: 2.5%;
     align-items: center;
     margin-top: 40px;
-
+    position: fixed;
+    bottom: 2%;
 }
 
 .navbar a {
@@ -23,8 +24,8 @@
 }
 
 .navbar a.active {
-    transform: scale(1.6) translateY(-10%);
     transition: 0.3s ease-in-out;
+    transform: scale(1.6) translateY(-10%);
 }
 
 a {

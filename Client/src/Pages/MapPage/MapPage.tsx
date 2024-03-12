@@ -1,35 +1,70 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Map from "../../Components/map/map";
 import Drawer from "../../Components/drawer/drawer";
 import { Button } from "antd";
 import "./MapPage.css";
+import { Navigation } from "../../Components/navBar/Navigation";
+import EventService from "../../services/event.service";
+import GreenPointService from "../../services/greenpoints.service";
 
 
 interface MapPageProps {
 
 }
 
-const MapPage: React.FC<MapPageProps> = () => {
+interface Mark {
+    id: number;
+    lat: number;
+    lng: number;
+}
 
-    const [drawer, SetDrawer] = React.useState(false);
+export const MapPage: React.FC<MapPageProps> = () => {
+
+    const [drawer, setDrawer] = React.useState(false);
+    const [marks, setMarks] = React.useState<Mark[]>([]);
+    const [greenpoints, setGreemPoints] = React.useState<Mark[]>([]);
+    const { getAllEvents } = EventService();
+    const { getAllGreenPoints } = GreenPointService();
+
+    useEffect(() => {
+        getMarks();
+        getGreenPoints();
+        console.log(greenpoints);
+        
+    }, []);
 
     const openDrawer = () => {
-        SetDrawer(true)
+        setDrawer(!drawer);
     }
 
     const closeDrawer = () => {
-        SetDrawer(false)
+        setDrawer(false);
     }
 
-    const Marks = [{lat:20.00000,lng: 20.20000}]
+    const getMarks = async () => {
+        try {
+            const events = await getAllEvents();
+            setMarks(events.map(evt => ({id: evt.id, lat: evt.latitude, lng: evt.longitude })));     
+        } catch (error) {
+            console.error('Error fetching events:', error);
+        }
+    }
+
+    const getGreenPoints = async () => {
+        try{
+            const allgreenpoints = await getAllGreenPoints();
+            setGreemPoints(allgreenpoints.map(grp => ({id: grp.id, lat: grp.latitude, lng: grp.longitude })));
+        } catch (error) {
+            console.error('Error fetching events:', error);
+        }
+    }
 
     return (
         <div style={{ width: '100vw', height: '100vh' }}>
             <Button type="default" shape="circle" size="large" onClick={openDrawer} />
-            <Map marks={Marks} greenpoints={null} selectable={false} />
+            <Map marks={marks} greenpoints={greenpoints} selectable={false} />
             <Drawer isOpen={drawer} onClose={closeDrawer} />
+            <Navigation/>
         </div>
     )
 }
-
-export default MapPage;
