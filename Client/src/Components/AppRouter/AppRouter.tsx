@@ -4,6 +4,7 @@ import { TipsPage } from "../../Pages/Tips page/TipsPage"
 import { PageNotFound } from "../../Pages/PageNotFound/PageNotFound"
 import { Events } from "../../Pages/EventsPage/Events"
 import { MapPage } from "../../Pages/MapPage/MapPage"
+import { CategorizedTips } from "../../Pages/Tips page/CategorizedTips"
 
 
 export const AppRouter = () => {
