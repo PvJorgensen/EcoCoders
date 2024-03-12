@@ -3,7 +3,7 @@ import { HomePage } from "../../Pages/HomePage/HomePage"
 import { TipsPage } from "../../Pages/Tips page/TipsPage"
 import { PageNotFound } from "../../Pages/PageNotFound/PageNotFound"
 import { Events } from "../../Pages/EventsPage/Events"
-
+import { MapPage } from "../../Pages/MapPage/MapPage"
 
 
 export const AppRouter = () => {
@@ -17,6 +17,7 @@ export const AppRouter = () => {
 
             <Route path="events" element={<Events />} />
 
+            <Route path="map" element={<MapPage />}></Route>
         </Routes>
         
         
