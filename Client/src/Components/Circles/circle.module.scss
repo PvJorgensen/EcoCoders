@@ -5,6 +5,7 @@
     padding-top: 20px;
     width: 100%;
     height: 20vh;
+
 }
 .circle {
     position: absolute;
@@ -17,6 +18,7 @@
     font-size: 16px;
     letter-spacing: 2px;
     font-weight: 400;
+    font-size: 18px;
       h2 {
         font-size: 1.5rem;
         color: white;
@@ -25,37 +27,37 @@
 
 .circleone {
     background-color: black;
-    left: 32%;
+    left: 28%;
     rotate: 10deg;
     z-index: 9999;
-    width: 100px;
-    height: 100px;
-    margin-top: 35px;
+    width: 140px;
+    height: 140px;
+    margin-top: 50px;
     background-color: #F7EF81;
 }
 
 .circletwo {
     color: white;
-    left: 15%;
+    left: 10%;
     rotate: -20deg;
-    width: 95px;
-    height: 95px;
+    width: 125px;
+    height: 125px;
     background-color: #1E6091;
 }
 
 .circlethree {
-    width: 80px;
-    height: 80px;
+    width: 110px;
+    height: 110px;
     left: 50%;
     rotate: 20deg;
     background-color: #E6A8BF;
 }
 
 .circlefour {
-    width: 70px;
-    height: 70px;
-    left: 60%;
-    margin-top: 60px;
+    width: 90px;
+    height: 90px;
+    left: 65%;
+    margin-top: 80px;
     rotate: -20deg;
     background-color: #B9FBC0;
 }

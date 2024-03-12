@@ -2,6 +2,8 @@
 import { Cards } from "../../Components/Cards/Cards"
 import styles from "./Hpage.module.scss"
 import { Circle } from "../../Components/Circles/Circle"
+import { Navigation } from "../../Components/navBar/Navigation"
+
 export const HomePage = () => {
   return (
     <>
@@ -11,6 +13,7 @@ export const HomePage = () => {
         <p>I hope you are eager to start improving the planet and challenge your friends to do different challenges</p>
       </section>
       <Cards />
+      <Navigation />
     </>
   )
 }
