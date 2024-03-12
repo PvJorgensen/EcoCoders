@@ -15,13 +15,13 @@ interface Tip {
 export const CategorizedTips = () => {
     
     const { category } = useParams<{ category: string }>(); //Retrieve the category name from the URL parameters
-    const { getAllTipss } = TipsService();
+    const { getAllTips } = TipsService();
     const [tips, setTips] = useState<Tip[]>([]);
 
     useEffect(() => {
         async function fetchTips() {
             try {
-                const tipsData = await getAllTipss();
+                const tipsData = await getAllTips();
                //
                 const filteredTips = tipsData.filter(tip => tip.category === category);
                 setTips(filteredTips);
