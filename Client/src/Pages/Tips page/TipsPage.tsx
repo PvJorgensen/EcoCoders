@@ -1,6 +1,5 @@
 import { Card } from 'antd';
 import {useEffect,useState } from 'react';
-import axios from 'axios';
 import Searchbar from '../../Components/Search bar/Searchbar';
 import styles from './TPage.module.scss';
 import TipsService from '../../services/tips.service';
@@ -22,9 +21,9 @@ export const TipsPage = () => {
     const { getAllTipss } = TipsService();
     const [tips, setTips] = useState<Tip[]>([]);
 
-    const fetchData = async (value: string) => {
-        const { data } = await axios.get(`https://dummyjson.com/products/search?q=${value}&limit=10`);
-        return data.products;
+    const fetchData = async () => {
+        const  data  = await getAllTipss();
+        return data;
     };
     useEffect(() => {
         async function fetchTips() {
@@ -51,8 +50,8 @@ export const TipsPage = () => {
          <div style={{ justifyContent:'center' }}>
          <h2 className={`${styles.h2} `}>Welcome to your eco-encyclopedia!</h2>
     
-    <Card style={{ width: 348, height: 190 }} className={`${styles.topCard} `}>
-        <h3 style={{ textAlign: "center", color: "black" }}>DAILY TIPS</h3>
+    <Card  style={{ width: 348, height: 190 }} className={`${styles.topCard} `}>
+        <h3 style={{ color: "black", textAlign:"center" }}>DAILY TIPS</h3>
         <div style={{ display: 'flex', alignItems: 'center' }}>
             <p style={{ flex: 1 }}>
                 If a pizza box is cheesy or oily, compost it if possible. Otherwise put it in the trash

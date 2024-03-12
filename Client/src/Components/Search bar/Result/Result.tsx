@@ -7,6 +7,7 @@ interface ResultProps {
   category: string;
 }
 
+const keys = ['name', 'description',  'category'];
 
 const Result: React.FC<ResultProps> = ({ name, description, category }) => (
   <div>
@@ -15,5 +16,6 @@ const Result: React.FC<ResultProps> = ({ name, description, category }) => (
     <span>Category: {category}</span>
   </div>
 );
+
 
 export default Result;
