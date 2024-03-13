@@ -1,7 +1,7 @@
 import { Card } from 'antd';
 import { useState } from 'react';
 import axios from 'axios';
-import Searchbar from '../../Components/Search bar/Searchbar';
+import Searchbar from '../../Components/Searchbar/Searchbar';
 import styles from './TPage.module.scss';
 
 interface Suggestion {

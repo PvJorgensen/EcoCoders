@@ -2,6 +2,41 @@
     width: 348px;
     height: 277px;
     flex-shrink: 0;
-    border-radius: 29px 29px 0px 0px;
-    background: lightgray 50% / cover no-repeat, #D9D9D9;
+    border-radius: 26px 26px 26px 26px;
+    border: 3px solid #A8DEE6;
+    margin: auto;
+    margin-top: 4%;
+}
+
+.textWrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 22px;
+    h3 {
+        font-size: 24px;
+        margin-top: 15px;
+        margin-top: 5px;
+        margin-bottom: 2px;
+    }
+    p {
+        font-size: 16px;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+}
+.mainText {
+    display: flex;
+    flex-direction: column;
+}
+
+.location {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+}
+
+.dates {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
 }

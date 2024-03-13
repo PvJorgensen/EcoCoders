@@ -24,8 +24,8 @@ export const SingleEventCard: React.FC<EventCardProps> = ({ id, name, descriptio
           <p>{latitude}</p>
         </div>
         <div className={style.dates}>
-          <p>{new Date(date_start).toDateString()}</p>
-          <p>{new Date(date_end).toDateString()}</p>
+          <p>{new Date(date_start).toDateString()} - {new Date(date_end).toDateString()}</p>
+          <p></p>
         </div>
       </div>
     </div>
