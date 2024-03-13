@@ -10,12 +10,8 @@ import Login from "../../Pages/Login/Login"
 import Auth from "../../services/auth.service";
 import SignUp from "../../Pages/Login/SignUp"
 import Form from "../../Pages/Login/Form"
-<<<<<<< HEAD
 import Landing from "../../Pages/Login/Landing"
-
-=======
 import ProfilePage from "../../Pages/PorfilePage/ProfilePage"
->>>>>>> a13fc3e3dae4d15e6237c133d122ef0964d0e477
 
 export const AppRouter = () => {
     // Auth();
@@ -23,12 +19,9 @@ export const AppRouter = () => {
     return (
         <Routes>
             <Route index element={<HomePage />}></Route>
-<<<<<<< HEAD
 
             <Route path="landing" element={<Landing />} />
 
-=======
->>>>>>> a13fc3e3dae4d15e6237c133d122ef0964d0e477
             <Route path="tips" element={<TipsPage />} />
             <Route path="categorizedTips/:category" element={<CategorizedTips />} />
             <Route path="*" element={<PageNotFound />}></Route>
@@ -40,10 +33,7 @@ export const AppRouter = () => {
 
             <Route path="form" element={<Form />}></Route>
 
-<<<<<<< HEAD
-=======
             <Route path="profile" element={<ProfilePage />}></Route>
->>>>>>> a13fc3e3dae4d15e6237c133d122ef0964d0e477
         </Routes>
         
         
