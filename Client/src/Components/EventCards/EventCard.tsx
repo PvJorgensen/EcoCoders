@@ -18,11 +18,10 @@ export const EventCard: React.FC<EventCardProps> = ({ id, name, longitude, latit
       <div>img</div>
           <div className={style.mainText}>
             <h3>{name}</h3>
-            <p>Button{longitude} - {latitude}</p>
-            <p>{new Date(date_start).toDateString()} - {new Date(date_end).toDateString()}</p>
-            <p></p>
+            <p>Button{longitude}{latitude}</p>
+            <p>{date_start.toString()} - {date_end.toString()}</p>
           </div>
-          <div>button</div>
+          <button className={style.button}>Join</button>
     </Link>
   );
 };

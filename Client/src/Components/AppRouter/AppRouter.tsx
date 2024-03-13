@@ -14,7 +14,8 @@ import Landing from "../../Pages/Login/Landing"
 import ProfilePage from "../../Pages/PorfilePage/ProfilePage"
 
 export const AppRouter = () => {
-    // Auth();
+   
+    //Auth();
 
     return (
         <Routes>

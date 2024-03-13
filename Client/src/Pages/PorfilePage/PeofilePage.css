@@ -1,0 +1,11 @@
+.profile-background-img {
+    display: flex;
+}
+
+.user-upload {
+    height: 28vh;
+    width: 100%;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+}
