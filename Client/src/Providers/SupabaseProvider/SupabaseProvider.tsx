@@ -11,7 +11,7 @@ export const SupabaseProvider: React.FC<{ children: ReactNode }> = ({ children }
     const [supabase, setSupabase] = useState<SupabaseClient | null>(null);
 
     const supabaseUrl = 'https://hiqgrytlzaxpaneovggu.supabase.co';
-    const supabaseKey = import.meta.env.REACT_APP_MAPBOX_TOKEN as string;
+    const supabaseKey: string = import.meta.env.VITE_SUPABASE_KEY;
 
     useEffect(() => {
         setSupabase(createClient(supabaseUrl, supabaseKey));
