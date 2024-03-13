@@ -8,6 +8,9 @@
     outline: none;
     transition: 0.2s ease-in-out;
     margin-top: 20px;
+    background-color: #fbfbfb;
+    position: relative;
+    
    
   }
   
@@ -21,15 +24,13 @@
     position: relative;
   }
   
-  
-  
   .suggestions {
     /* Styles of the suggestions container */
     overflow-y: scroll;
     border: 1px solid #f3f3f3;
-    background-color: white;
+    background-color: #fbfbfb;
     max-height: 20rem;
-    width: 100%;
+    width: 70%;
     height: fit-content;
     position: absolute;
     z-index: 10;
@@ -48,9 +49,27 @@
     height: 2rem;
     display: flex;
     align-items: center;
+    
   }
   
   .suggestion:hover {
     /* Changing background color on hover */
-    background-color: #f3f3f3;
+    background-color:#dedede;
   }
+  
+  
+ .textboxdiv {
+  position: relative;
+ }
+  
+ .textboxdiv button{
+  position:absolute;
+  right: 138px ;
+  top: 25px;
+  z-index: 30;
+  border: none;
+  background-color: #fbfbfb;
+  font-size: 1.2em;
+ }
+
+ 
