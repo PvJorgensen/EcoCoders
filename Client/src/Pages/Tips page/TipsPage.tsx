@@ -1,7 +1,7 @@
 import { Card } from 'antd';
 import {useEffect,useState } from 'react';
 import axios from 'axios';
-import Searchbar from '../../Components/Search bar/Searchbar';
+import Searchbar from '../../Components/Searchbar/Searchbar';
 import styles from './TPage.module.scss';
 import TipsService from '../../services/tips.service';
 import { Link } from 'react-router-dom'; 

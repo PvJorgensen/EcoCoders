@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { EventCard } from '../../Components/EventCards/EventCard';
 import EventService from '../../services/event.service';
+import SearchBar from '../../Components/Searchbar/Searchbar';
 
 export const Events = () => {
     interface Event {
@@ -9,8 +10,8 @@ export const Events = () => {
         description: string;
         longitude: number;
         latitude: number;
-        date_start: Date;
-        date_end: Date;
+        date_start: number;
+        date_end: number;
     }
     const { getAllEvents } = EventService();  //fetching events
     const [events, setEvents] = useState<Event[]>([]);
@@ -26,10 +27,14 @@ export const Events = () => {
         }
         fetchEvents();
     }, []);
-
+      
     return (
         <>
             <div>
+                <SearchBar
+                fetchData={getAllEvents}
+                setResult={(events)=>setEvents(events as Event[])}
+                suggestionKey='' />
                 {Array.isArray(events) ? (
                     events.map(event => (
                         <EventCard key={event.id} 
