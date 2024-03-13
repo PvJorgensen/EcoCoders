@@ -9,15 +9,50 @@
     z-index: 1000;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border-radius: 30px 30px 0 0;
+    overflow: hidden;
 }
 
 .drawer.open {
-    bottom: 0;
-    transition: bottom 0.3s ease-in-out;
+    bottom: 0%;
 }
 
 .drawer-content {
-    padding: 20px;
+    padding-top: 5%;
+    width: 100%;
+    height: 100%;
+}
+
+.drawer-filter {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 90%;
+}
+
+.drawer-filter div{
+    margin: 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.drawer-filter div span{
+    background-color: #E4E4E4;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 10%;
+    font-size: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drawer-filter div p{
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
 }
 
 .swipe{
