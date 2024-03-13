@@ -1,7 +1,5 @@
 import  { useEffect, useState } from 'react';
 import { Card } from 'antd';
-import axios from 'axios';
-import Searchbar from '../../Components/Searchbar/Searchbar';
 import styles from './TPage.module.scss';
 import TipsService from '../../services/tips.service';
 import { Navigation } from "../../Components/navBar/Navigation";
@@ -28,6 +26,8 @@ export const TipsPage = () => {
         const data = await getAllTips();
         return data;
     };
+
+    
 
     useEffect(() => {
         async function fetchTips() {
@@ -66,16 +66,7 @@ export const TipsPage = () => {
                             alt="Tip Image"
                         />
                     </div>
-                </Card>
-
-                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '15px' }}>
-                    <div style={{ width: '100%', maxWidth: '348px' }}>
-                        <Searchbar fetchData={fetchData} setResult={(result) => {
-                            setResult(result);
-                            setShowContent(false); // Hide the content when a suggestion is clicked
-                        }} suggestionKey="category" />
-                    </div>
-                </div>
+                </Card> 
 
                 {showContent && ( // Only render the content if showContent is true
                     <div className={styles.gridContainer} >
@@ -93,8 +84,12 @@ export const TipsPage = () => {
                 )}
 
             </div>
+             <div>
+             <Navigation />
+             </div>
 
-            <Navigation />
+          
+          
         </>
     );
 };
