@@ -14,7 +14,7 @@ export const Navigation = () => {
       return 'Map';
     } else if (pathname === '/tips') {
       return 'Tips';
-    } else if (pathname === '/user') {
+    } else if (pathname === '/profile') {
       return 'User';
     }
 
@@ -26,7 +26,7 @@ export const Navigation = () => {
       <Link className={getMenuActiveItem() === 'Map' ? styles.active : ''} to="/map"><EnvironmentOutlined /></Link>
       <Link className={getMenuActiveItem() === 'Home' ? styles.active : ''} to="/"><GlobalOutlined /></Link>
       <Link className={getMenuActiveItem() === 'Tips' ? styles.active : ''}  to="/tips"><BulbOutlined /></Link>
-      <Link className={getMenuActiveItem() === 'User' ? styles.active : ''} to="/PageNotFound"><UserOutlined /></Link>
+      <Link className={getMenuActiveItem() === 'User' ? styles.active : ''} to="/profile"><UserOutlined /></Link>
     </nav>
   );
 };

@@ -10,10 +10,11 @@ import { CategorizedTips } from "../../Pages/Tips page/CategorizedTips"
 import Auth from "../../services/auth.service";
 import SignUp from "../../Pages/Login/SignUp"
 import Form from "../../Pages/Login/Form"
+import ProfilePage from "../../Pages/PorfilePage/ProfilePage"
 
 
 export const AppRouter = () => {
-    Auth();
+    // Auth();
 
     return (
         <Routes>
@@ -32,7 +33,10 @@ export const AppRouter = () => {
             <Route path="map" element={<MapPage />}></Route>
 
             <Route path="signup" element={<SignUp />}></Route>
+
             <Route path="form" element={<Form />}></Route>
+
+            <Route path="profile" element={<ProfilePage />}></Route>
         </Routes>
         
         
