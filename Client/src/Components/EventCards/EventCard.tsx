@@ -27,7 +27,7 @@ export const EventCard: React.FC<EventCardProps> = ({ id, name, longitude, latit
             <p>{`${date_start_formatted.getHours()}:${date_start_formatted.getMinutes()} `} - {`${date_end_formatted.getHours()}:${date_end_formatted.getMinutes()} `}</p>
             <p></p>
           </div>
-          <div>button</div>
+          <button className={style.button}>Join</button>
     </Link>
   );
 };

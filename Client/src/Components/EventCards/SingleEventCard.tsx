@@ -1,3 +1,5 @@
+//page for single event card
+
 import React from 'react';
 import style from './singleEvent.module.scss'
 
@@ -20,11 +22,11 @@ export const SingleEventCard: React.FC<EventCardProps> = ({ id, name, descriptio
           <p>{description}</p>
         </div>
         <div className={style.location}>
-          <p>{longitude}</p>
-          <p>{latitude}</p>
+          <p>{longitude}{latitude}</p>
         </div>
         <div className={style.dates}>
-          <p>{new Date(date_start).toDateString()} - {new Date(date_end).toDateString()}</p>
+           {/* <p>{new Date(date_start).toDateString()} - {new Date(date_end).toDateString()}</p> */}
+           <p>{date_start.toString()} - {date_end.toString()}</p>
           <p></p>
         </div>
       </div>

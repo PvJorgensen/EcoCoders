@@ -1,11 +1,15 @@
-
-import { useState } from 'react';
-import { useDebounce } from '../../hooks/useDebounce';
+import React, { useState } from 'react';
+import { useDebounce } from './hooks/useDebounce';
 import styles from './Searchbar.module.scss';
+import Result from './Result/Result';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
 
 interface Suggestion {
-  [key: string]: any; 
-}
+  name: string;
+  description: string;
+  category: string;}
 
 interface Props {
   fetchData: (value: string) => Promise<Suggestion[]>; 
@@ -17,12 +21,19 @@ const SearchBar: React.FC<Props> = ({ fetchData, setResult, suggestionKey }) => 
   const [value, setValue] = useState(''); //this is the value of the search bar
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]); // this is where the search suggestions get stored
   const [hideSuggestions, setHideSuggestions] = useState(true);
+  const [searchResults, setSearchResults] = useState<Suggestion[]>([]); // Store search results
 
   const findResult = (value: string) => {
-    const result = suggestions.find((suggestion) => suggestion[suggestionKey] === value);
-    setResult(result || null); 
+    const result = suggestions.find((suggestion) => (suggestion as any)[suggestionKey] === value);
+    if (result) {
+      setResult(result);
+      setSearchResults([result]);
+    } else {
+      setResult(null);
+      setSearchResults([]);
+    }
   }; 
-
+  
   useDebounce(
     async () => {
       try {
@@ -51,34 +62,48 @@ const SearchBar: React.FC<Props> = ({ fetchData, setResult, suggestionKey }) => 
     setValue(e.target.value);
   };
 
+ 
+  
   return (
     <>
       <div className={styles['container']}>
-        <input
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          type="search"
-          className={styles['textbox']}
-          placeholder="Search"
-          value={value}
-          onChange={handleSearchInputChange}
-        />
+      <div className={styles['textboxdiv']}>
+  <input
+    onFocus={handleFocus}
+    onBlur={handleBlur}
+    type="search"
+    className={styles['textbox']}
+    placeholder="Search"
+    value={value}
+    onChange={handleSearchInputChange}
+  />
+  <button  >
+    <FontAwesomeIcon icon={faSearch}  />
+  </button>
+</div>
+
+        
         <div
           className={`${styles.suggestions} ${
             hideSuggestions && styles.hidden
           }`}
         >
-          {suggestions.map((suggestion, index) => (
+          {suggestions.map((suggestion) => (
             <div
-              key={index} 
+              
               className={styles.suggestion}
-              onClick={() => findResult(suggestion[suggestionKey])}
-            >
-              {suggestion[suggestionKey]}
+              onMouseDown={() => findResult((suggestion as any)[suggestionKey])}
+              >
+              {(suggestion as any)[suggestionKey]}
             </div>
           ))}
         </div>
       </div>
+
+      {/* Display search results */}
+      {searchResults.map((result, index) => (
+        <Result key={index} {...result} />
+      ))}
     </>
   );
 };
