@@ -73,7 +73,7 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
 
       switch (value) {
         case 'List':
-            navigate('/events');
+          navigate('/events');
           break;
         case 'Events':
           setGlobalVariableMarks(false);
@@ -86,10 +86,10 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
           onClose();
           break;
         case 'Challenges':
-            navigate('/challenges');
+          navigate('/challenges');
           break;
         case 'Create':
-            
+
           break;
         case 'Show all':
           setGlobalVariableGreenPoints(false);
@@ -103,32 +103,36 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
 
     if (isfilter) {
       return (
-        <div className="drawer-filter">
-          <div onClick={() => actionsItems('List')}>
-            <UnorderedListOutlined />
-            <p>List</p>
+        <>
+          <div className="drawer-filter-top">
+            <div onClick={() => actionsItems('List')}>
+              <UnorderedListOutlined />
+              <p>List</p>
+            </div>
+            <div onClick={() => actionsItems('Events')}>
+              <EnvironmentFilled />
+              <p>Events</p>
+            </div>
+            <div onClick={() => actionsItems('Green Points')}>
+              <EnvironmentFilled />
+              <p>Green Points</p>
+            </div>
           </div>
-          <div onClick={() => actionsItems('Events')}>
-            <EnvironmentFilled />
-            <p>Events</p>
+          <div className="drawer-filter-bottom">
+            <div onClick={() => actionsItems('Challenges')}>
+              <TrophyOutlined />
+              <p>Challenges</p>
+            </div>
+            <div onClick={() => actionsItems('Create')}>
+              <PlusCircleFilled />
+              <p>Create</p>
+            </div>
+            <div onClick={() => actionsItems('Show all')}>
+              <FilterOutlined />
+              <p>Show all</p>
+            </div>
           </div>
-          <div onClick={() => actionsItems('Green Points')}>
-            <EnvironmentFilled />
-            <p>Green Points</p>
-          </div>
-          <div onClick={() => actionsItems('Challenges')}>
-            <TrophyOutlined />
-            <p>Challenges</p>
-          </div>
-          <div onClick={() => actionsItems('Create')}>
-            <PlusCircleFilled />
-            <p>Create</p>
-          </div>
-          <div onClick={() => actionsItems('Show all')}>
-            <FilterOutlined />
-            <p>Show all</p>
-          </div>
-        </div>
+        </>
       );
     }
   }
