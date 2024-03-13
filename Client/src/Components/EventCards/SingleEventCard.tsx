@@ -9,8 +9,9 @@ interface EventCardProps {
   description: string;
   longitude: number;
   latitude: number;
-  date_start: Date;
-  date_end: Date;
+  date_start: number;
+  date_end: number;
+  img: string;
 }
 
 export const SingleEventCard: React.FC<EventCardProps> = ({ id, name, description, longitude, latitude, date_start, date_end }) => {

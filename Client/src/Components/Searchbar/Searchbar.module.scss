@@ -1,75 +1,63 @@
-.textbox {
-     border: 1px solid #A8DEE6;
-     border-radius: 20px;
-    height: 35px;
-    width: 350px;
-    box-sizing: border-box;
-    padding: 1px 10px;
-    outline: none;
-    transition: 0.2s ease-in-out;
-    margin-top: 20px;
-    background-color: #fbfbfb;
-    position: relative;
-    
-   
-  }
-  
-  .textbox:focus {
-    transition: 0.2s ease-in-out;
-   
-  }
-
-  .container {
-    width: 30rem;
-    position: relative;
-  }
-  
-  .suggestions {
-    /* Styles of the suggestions container */
-    overflow-y: scroll;
-    border: 1px solid #f3f3f3;
-    background-color: #fbfbfb;
-    max-height: 20rem;
-    width: 70%;
-    height: fit-content;
-    position: absolute;
-    z-index: 10;
-  }
-  
-  .suggestions.hidden {
-    /* Will hide the suggestions */
-    visibility: hidden; // We can also use `opacity: 0`
-  }
-  
-  .suggestion {
-    /* Styling of a single suggestion */
-    cursor: pointer;
-    box-sizing: border-box;
-    padding: 1px 10px;
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    
-  }
-  
-  .suggestion:hover {
-    /* Changing background color on hover */
-    background-color:#dedede;
-  }
-  
-  
- .textboxdiv {
+.textbox-container {
+  width: 80%;
   position: relative;
- }
-  
- .textboxdiv button{
-  position:absolute;
-  right: 138px ;
-  top: 25px;
-  z-index: 30;
-  border: none;
-  background-color: #fbfbfb;
-  font-size: 1.2em;
- }
+  margin: auto;
+}
 
- 
+.textbox {
+  border: 1px solid #A8DEE6;
+  border-radius: 20px;
+  height: 35px;
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 40px; /* Ancho del botón */
+  outline: none;
+  transition: 0.2s ease-in-out;
+  background-color: #fbfbfb;
+}
+
+.textbox:focus {
+  transition: 0.2s ease-in-out;
+}
+
+.textboxdiv {
+  position: relative;
+}
+
+.textboxdiv button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 40px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.suggestions {
+  overflow-y: scroll;
+  border: 1px solid #f3f3f3;
+  background-color: #fbfbfb;
+  max-height: 20rem;
+  width: 90%;
+  height: fit-content;
+  z-index: 10;
+}
+
+.suggestions.hidden {
+  visibility: hidden; 
+}
+
+.suggestion {
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 1px 10px;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.suggestion:hover {
+  background-color: #dedede;
+}
