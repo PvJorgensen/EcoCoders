@@ -58,8 +58,9 @@ export const TipsPage = () => {
                         />
                     </div>
                 </Card> 
+                    
+             
 
-                
                     <div className={styles.gridContainer} >
                         {Array.isArray(tips) ? (
                             tips.map((tip) => (
@@ -72,6 +73,9 @@ export const TipsPage = () => {
                             <p>No tips available</p>
                         )}
                     </div>
+
+                
+                   
 
             </div>
              <div>

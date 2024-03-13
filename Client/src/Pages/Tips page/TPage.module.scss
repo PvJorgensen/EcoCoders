@@ -40,13 +40,13 @@
      
       .gridContainer {
         margin-top: 5%;
-        margin-left: 9%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap:1rem;
-        width: 166px;
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         gap:1rem;
+         width: 166px;
          height: 144px;
          text-align: center;
+         
          
     }
     
@@ -60,6 +60,28 @@
          height: 144px;
          border: 4px solid #A8DEE6 ;
          justify-content: center;
+
+
+         h1 {
+          font-family: "Roboto", sans-serif;
+          font-weight: 500;
+          font-style:normal;
+          justify-content: center;
+         position: relative;
+         right: 15px;
+        }
+         
+    }
+
+    .detailCard {
+        background-color: #fbfbfb;
+        border-radius: 20px;
+        text-decoration: none;
+        color: black;
+         margin-top: 20px;
+        
+         justify-content: center;
+
          h1 {
           font-family: "Roboto", sans-serif;
           font-weight: 500;

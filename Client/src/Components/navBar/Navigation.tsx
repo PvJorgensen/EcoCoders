@@ -12,8 +12,8 @@ export const Navigation = () => {
       return 'Home';
     } else if (pathname === '/map') {
       return 'Map';
-    } else if (pathname === '/tips') {
-      return 'Tips';
+    } else if (pathname === '/tips' || pathname.startsWith('/categorizedTips/')) {
+      return 'Tips'; // Utiliser la même icône pour tips et categorizedTips
     } else if (pathname === '/profile') {
       return 'User';
     }
@@ -27,7 +27,7 @@ export const Navigation = () => {
       <Link className={getMenuActiveItem() === 'Home' ? styles.active : ''} to="/"><GlobalOutlined /></Link>
       <Link className={getMenuActiveItem() === 'Tips' ? styles.active : ''}  to="/tips"><BulbOutlined /></Link>
       <Link className={getMenuActiveItem() === 'User' ? styles.active : ''} to="/profile"><UserOutlined /></Link>
-    </nav>
-  );
-};
 
+    </nav>
+  )
+};
