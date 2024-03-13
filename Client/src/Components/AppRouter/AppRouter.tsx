@@ -10,15 +10,20 @@ import Login from "../../Pages/Login/Login"
 import Auth from "../../services/auth.service";
 import SignUp from "../../Pages/Login/SignUp"
 import Form from "../../Pages/Login/Form"
+import Landing from "../../Pages/Login/Landing"
 import ProfilePage from "../../Pages/PorfilePage/ProfilePage"
 
 export const AppRouter = () => {
    
     //Auth();
 
+    
     return (
         <Routes>
             <Route index element={<HomePage />}></Route>
+
+            <Route path="landing" element={<Landing />} />
+
             <Route path="tips" element={<TipsPage />} />
             <Route path="categorizedTips/:category" element={<CategorizedTips />} />
             <Route path="*" element={<PageNotFound />}></Route>

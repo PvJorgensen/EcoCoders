@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { supabase } from "../../services/clientSupabase";
+import "./Landing.css"
 
 interface User {
     username: string;
@@ -54,13 +55,15 @@ function Form() {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className="login-container">
+            <form className="login-item" onSubmit={handleSubmit}>
+                <h1 className="login-title">YOUR INFO</h1>
                 <input
                     type="text"
                     name="username"
                     placeholder="username"
                     value={username}
+                    className="login-input"
                     onChange={(event) => setUserName(event.target.value)}
                 />
                 <input
@@ -68,6 +71,7 @@ function Form() {
                     name="name"
                     placeholder="name"
                     value={name}
+                    className="login-input"
                     onChange={(event) => setName(event.target.value)}
                 />
                 <input
@@ -75,11 +79,11 @@ function Form() {
                     name="lastName"
                     placeholder="last name"
                     value={lastName}
+                    className="login-input"
                     onChange={(event) => setlastName(event.target.value)}
                 />
-                <button type="submit">Insert</button>
+                <button className="login-button" type="submit">SIGN UP</button>
             </form>
-            <button onClick={handleSignOut}>SignOut</button>
         </div>
     )
 }
