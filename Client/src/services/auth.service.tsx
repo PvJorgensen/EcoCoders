@@ -11,7 +11,7 @@ export default function Auth(){
           if (!session) {
             // If the user is on the /login or /signup page, do not redirect
             if (window.location.pathname !== '/login' && window.location.pathname !== '/signup' && window.location.pathname !== '/form' ) {
-              navigate('/login')
+              navigate('/landing')
             }
           } else {
             navigate('/')
