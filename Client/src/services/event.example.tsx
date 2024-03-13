@@ -11,9 +11,10 @@ export const Example = () => {
         description: string;
         longitude: number;
         latitude: number;
-        date_start: Date;
-        date_end: Date;
+        date_start: number;
+        date_end: number;
     }
+    
     const { getAllEvents } = EventService();
     const [events, setEvents] = useState<Event[]>([]);
 
@@ -39,8 +40,8 @@ export const Example = () => {
                             <p>Description: {event.description}</p>
                             <p>Longitude: {event.longitude}</p>
                             <p>Latitude: {event.latitude}</p>
-                            <p>Start Date: {new Date(event.date_start).toDateString()}</p>
-                            <p>End Date: {new Date(event.date_end).toDateString()}</p>
+                            <p>Start Date: {event.date_start}</p>
+                            <p>End Date: {event.date_end}</p>
                         </div>
                     ))
                 ) : (
