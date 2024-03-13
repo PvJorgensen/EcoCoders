@@ -22,43 +22,75 @@
     height: 100%;
 }
 
-.drawer-filter {
+.drawer-filter-top {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 90%;
 }
 
-.drawer-filter div{
-    margin: 4%;
+.drawer-filter-top div{
+    margin: 2%;
+    width: 10rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.drawer-filter div span{
+.drawer-filter-top div span{
     background-color: #E4E4E4;
-    width: 6rem;
-    height: 6rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 10%;
-    font-size: 5rem;
+    font-size: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.drawer-filter div p{
+.drawer-filter-top div p{
     font-size: 1.2rem;
     margin-top: 0.5rem;
     margin-bottom: 0;
 }
 
+.drawer-filter-bottom {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.drawer-filter-bottom div{
+    margin: 2%;
+    width: 10rem;
+    display: flex;
+    padding-top: 4%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.drawer-filter-bottom div span{
+    background-color: #E4E4E4;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 10%;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drawer-filter-bottom div p{
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+
 .swipe{
     height: 6px;
     width: 119px;
     margin: 0 auto;
+    margin-bottom: 2%;
     border-radius: 1rem;
     background-color: grey;
 }
