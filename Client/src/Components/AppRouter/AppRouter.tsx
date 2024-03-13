@@ -13,7 +13,7 @@ import Form from "../../Pages/Login/Form"
 
 
 export const AppRouter = () => {
-     Auth();
+    //  Auth();
 
     return (
         <Routes>
