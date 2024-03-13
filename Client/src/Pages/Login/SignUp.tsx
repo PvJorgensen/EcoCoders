@@ -13,10 +13,10 @@ function SignUp() {
                 email: email,
                 password: password,
             });
-            
+
             const user = supabase.auth.getSession();
 
-            if (!user){
+            if (!user) {
                 console.log("wating for validate")
             } else {
                 navigate('/form')
@@ -26,27 +26,34 @@ function SignUp() {
             console.error(error);
         }
     }
-    
+    const goToLogin = () => {
+        navigate('/login')
+    }
 
     return (
         <>
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="yourmail@"
-                    onChange={(event => setEmail(event.target.value))}
-                />
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="password"
-                    onChange={(event => setPassword(event.target.value))}
-                />
-                <button>Take Part</button>
-            </form>
-        </div>
+            <div className="login-container">
+                <form className="login-item" onSubmit={handleSubmit}>
+                    <h1 className="login-title">TAKE PART</h1>
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="yourmail@"
+                        className="login-input"
+                        onChange={(event => setEmail(event.target.value))}
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="password"
+                        className="login-input"
+                        onChange={(event => setPassword(event.target.value))}
+                    />
+                    <button className="login-button">SIGN UP</button>
+
+                    <p className="login-link" onClick={goToLogin}>DO YOU ALREADY HAVE AN ACCOUNT?</p>
+                </form>
+            </div>
         </>
     );
 }

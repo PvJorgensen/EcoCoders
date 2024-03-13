@@ -10,14 +10,17 @@ import { CategorizedTips } from "../../Pages/Tips page/CategorizedTips"
 import Auth from "../../services/auth.service";
 import SignUp from "../../Pages/Login/SignUp"
 import Form from "../../Pages/Login/Form"
+import Landing from "../../Pages/Login/Landing"
 
 
 export const AppRouter = () => {
-    Auth();
+    // Auth();
 
     return (
         <Routes>
             <Route index element={<HomePage />}></Route>
+
+            <Route path="landing" element={<Landing />} />
 
             <Route path="tips" element={<TipsPage />} />
             
@@ -32,7 +35,9 @@ export const AppRouter = () => {
             <Route path="map" element={<MapPage />}></Route>
 
             <Route path="signup" element={<SignUp />}></Route>
+
             <Route path="form" element={<Form />}></Route>
+
         </Routes>
         
         
