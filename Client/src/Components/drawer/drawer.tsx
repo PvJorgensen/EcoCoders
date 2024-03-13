@@ -1,12 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./drawer.css";
+import { EnvironmentFilled, FilterOutlined, PlusCircleFilled, TrophyOutlined, UnorderedListOutlined } from "@ant-design/icons";
+import { setGlobalVariableGreenPoints, setGlobalVariableMarks } from "../const/const";
+import { useNavigate } from "react-router-dom";
 
 interface DrawerProps {
   isOpen: boolean;
   onClose: () => void;
+  isfilter: boolean;
 }
 
-const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose }) => {
+const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
+
+  const navigate = useNavigate();
   const [startY, setStartY] = useState(0);
   const [offsetY, setOffsetY] = useState(0);
   const [isClosing, setIsClosing] = useState(false);
@@ -33,14 +39,16 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose }) => {
     const handleTouchEnd = () => {
       const closeThreshold = 50;
 
-      setIsClosing(true);
       if (offsetY > closeThreshold) {
         setOffsetY(0);
+        setIsClosing(true);
         onClose();
       } else {
         setOffsetY(0);
       }
     };
+
+    if (!isOpen) setIsClosing(false);
 
     if (isOpen) {
       window.addEventListener("touchstart", handleTouchStart);
@@ -53,20 +61,83 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose }) => {
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [isOpen, startY, offsetY, onClose]);
+  }, [isOpen, startY, offsetY, onClose, isOpen]);
 
   const drawerStyle = {
     transform: `translateY(${offsetY}px)`,
   };
 
-  useEffect(() => {
-    if(!isOpen) setIsClosing(false);
-  }, [isOpen]);
+  const filter = () => {
+    const actionsItems = (value: string) => {
+      console.log('Action item clicked:', value);
+
+      switch (value) {
+        case 'List':
+            navigate('/events');
+          break;
+        case 'Events':
+          setGlobalVariableMarks(false);
+          setGlobalVariableGreenPoints(true);
+          onClose();
+          break;
+        case 'Green Points':
+          setGlobalVariableGreenPoints(false);
+          setGlobalVariableMarks(true);
+          onClose();
+          break;
+        case 'Challenges':
+            navigate('/challenges');
+          break;
+        case 'Create':
+            
+          break;
+        case 'Show all':
+          setGlobalVariableGreenPoints(false);
+          setGlobalVariableMarks(false);
+          onClose();
+          break;
+        default:
+      }
+
+    };
+
+    if (isfilter) {
+      return (
+        <div className="drawer-filter">
+          <div onClick={() => actionsItems('List')}>
+            <UnorderedListOutlined />
+            <p>List</p>
+          </div>
+          <div onClick={() => actionsItems('Events')}>
+            <EnvironmentFilled />
+            <p>Events</p>
+          </div>
+          <div onClick={() => actionsItems('Green Points')}>
+            <EnvironmentFilled />
+            <p>Green Points</p>
+          </div>
+          <div onClick={() => actionsItems('Challenges')}>
+            <TrophyOutlined />
+            <p>Challenges</p>
+          </div>
+          <div onClick={() => actionsItems('Create')}>
+            <PlusCircleFilled />
+            <p>Create</p>
+          </div>
+          <div onClick={() => actionsItems('Show all')}>
+            <FilterOutlined />
+            <p>Show all</p>
+          </div>
+        </div>
+      );
+    }
+  }
 
   return (
-    <div className={`drawer ${isOpen? "open" : ""}`} style={drawerStyle} ref={drawerRef}>
+    <div className={`drawer ${isOpen && !isClosing ? "open" : ""}`} style={drawerStyle} ref={drawerRef}>
       <div className="drawer-content">
         <div className="swipe" />
+        {filter()}
       </div>
     </div>
   );
