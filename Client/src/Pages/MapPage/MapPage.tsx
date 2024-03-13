@@ -6,6 +6,7 @@ import "./MapPage.css";
 import { Navigation } from "../../Components/navBar/Navigation";
 import EventService from "../../services/event.service";
 import GreenPointService from "../../services/greenpoints.service";
+import { GLOBAL_VARIABLE_GREENPOINTS, GLOBAL_VARIABLE_MARKS } from "../../Components/const/const";
 
 
 interface MapPageProps {
@@ -62,8 +63,8 @@ export const MapPage: React.FC<MapPageProps> = () => {
     return (
         <div style={{ width: '100vw', height: '100vh' }}>
             <Button type="default" shape="circle" size="large" onClick={openDrawer} />
-            <Map marks={marks} greenpoints={greenpoints} selectable={false} />
-            <Drawer isOpen={drawer} onClose={closeDrawer} />
+            <Map marks={!GLOBAL_VARIABLE_MARKS ? marks : null} greenpoints={!GLOBAL_VARIABLE_GREENPOINTS ? greenpoints : null} selectable={false} />
+            <Drawer isOpen={drawer} onClose={closeDrawer} isfilter={true} />
             <Navigation/>
         </div>
     )
