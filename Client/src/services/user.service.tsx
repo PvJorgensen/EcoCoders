@@ -5,62 +5,62 @@ import { Auth } from '@supabase/auth-ui-react'
 
 const apiUrl: string = import.meta.env.VITE_API_URL;
 const apiKey: string = import.meta.env.VITE_SUPABASE_KEY;
-const supabase = createClient(apiUrl, apiKey);
+export const supabase = createClient(apiUrl, apiKey);
 
-export default function UserService() {
-    const [session, setSession] = useState(null)
+// export default function UserService() {
+//     const [session, setSession] = useState(null)
 
-    useEffect(() => {
-        supabase.auth.getSession().then(({ data: { session } }) => {
-            //@ts-ignore
-            setSession(session)
-        })
+//     useEffect(() => {
+//         supabase.auth.getSession().then(({ data: { session } }) => {
+//             //@ts-ignore
+//             setSession(session)
+//         })
 
-        const { data: { subscription },
-        } = supabase.auth.onAuthStateChange((_event, session) => {
-            //@ts-ignore
-            setSession(session)
-        })
+//         const { data: { subscription },
+//         } = supabase.auth.onAuthStateChange((_event, session) => {
+//             //@ts-ignore
+//             setSession(session)
+//         })
 
-        return () => subscription.unsubscribe()
-    }, [])
+//         return () => subscription.unsubscribe()
+//     }, [])
 
-    if (!session) {
-        return (
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center', height:'100vh'}}>
-                {/* <img src="/path/to/your/logo.png" alt="Logo" style={{ width: '100px', height: '100px' }} /> */}
-                <h1>Eco Coders</h1>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <Auth
-                        supabaseClient={supabase}
-                        appearance={{
-                            style: {
-                                button: {
-                                    backgroundColor: '#1E6091',
-                                    color: 'white',
-                                    borderRadius: '10px',
-                                    height: '3em',
-                                },
-                                input: {
-                                    border: '3px solid #A8DEE6',
-                                    backgroundColor: 'white',
-                                    borderRadius: '10px',
-                                    height: '3em',
-                                    width: '80vw'
-                                }
-                            }
-                        }}
-                        providers={[]}
-                    />
-                </div>
-            </div>
+//     if (!session) {
+//         return (
+//             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center', height:'100vh'}}>
+//                 {/* <img src="/path/to/your/logo.png" alt="Logo" style={{ width: '100px', height: '100px' }} /> */}
+//                 <h1>Eco Coders</h1>
+//                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+//                     <Auth
+//                         supabaseClient={supabase}
+//                         appearance={{
+//                             style: {
+//                                 button: {
+//                                     backgroundColor: '#1E6091',
+//                                     color: 'white',
+//                                     borderRadius: '10px',
+//                                     height: '3em',
+//                                 },
+//                                 input: {
+//                                     border: '3px solid #A8DEE6',
+//                                     backgroundColor: 'white',
+//                                     borderRadius: '10px',
+//                                     height: '3em',
+//                                     width: '80vw'
+//                                 }
+//                             }
+//                         }}
+//                         providers={[]}
+//                     />
+//                 </div>
+//             </div>
 
-        )
-    }
-    else {
-        return (<div>Logged in!</div>)
-    }
-}
+//         )
+//     }
+//     else {
+//         return (<div>Logged in!</div>)
+//     }
+// }
 
 
 // interface user {
