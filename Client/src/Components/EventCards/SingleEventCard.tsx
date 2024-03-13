@@ -41,6 +41,7 @@ export const SingleEventCard: React.FC<EventCardProps> = ({ id, name, descriptio
       </div>
     </div>
     <Navigation></Navigation>
+    
     </div>
   );
 };
