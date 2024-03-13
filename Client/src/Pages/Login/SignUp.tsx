@@ -1,25 +1,33 @@
 import { supabase } from "../../services/clientSupabase";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"
 
-function Login() {
+function SignUp() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    
+    const navigate = useNavigate();
     const handleSubmit = async (event: any) => {
         event.preventDefault();
         try {
-            const result = await supabase.auth.signInWithPassword({
+            const response = await supabase.auth.signUp({
                 email: email,
                 password: password,
-            })
-            console.log(result)
+            });
+            
+            const user = supabase.auth.getSession();
+
+            if (!user){
+                console.log("wating for validate")
+            } else {
+                navigate('/form')
+            }
 
         } catch (error) {
             console.error(error);
         }
-        
     }
     
+
     return (
         <>
         <div>
@@ -36,11 +44,12 @@ function Login() {
                     placeholder="password"
                     onChange={(event => setPassword(event.target.value))}
                 />
-                <button>LogIn</button>
+                <button>Take Part</button>
             </form>
         </div>
         </>
     );
 }
 
-export default Login
+export default SignUp
+

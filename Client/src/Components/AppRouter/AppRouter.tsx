@@ -8,6 +8,8 @@ import { MapPage } from "../../Pages/MapPage/MapPage"
 import { CategorizedTips } from "../../Pages/Tips page/CategorizedTips"
 
 import Auth from "../../services/auth.service";
+import SignUp from "../../Pages/Login/SignUp"
+import Form from "../../Pages/Login/Form"
 
 
 export const AppRouter = () => {
@@ -18,7 +20,8 @@ export const AppRouter = () => {
             <Route index element={<HomePage />}></Route>
 
             <Route path="tips" element={<TipsPage />} />
-            <Route path="categorizedTips" element={<CategorizedTips />} />
+            
+            <Route path="categorizedTips/:category" element={<CategorizedTips />} />
 
             <Route path="*" element={<PageNotFound />}></Route>
 
@@ -27,6 +30,9 @@ export const AppRouter = () => {
             <Route path="events" element={<Events />} />
 
             <Route path="map" element={<MapPage />}></Route>
+
+            <Route path="signup" element={<SignUp />}></Route>
+            <Route path="form" element={<Form />}></Route>
         </Routes>
         
         
