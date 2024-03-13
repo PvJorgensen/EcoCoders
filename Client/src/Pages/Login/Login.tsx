@@ -4,8 +4,8 @@ import "./Landing.css"
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-    const [email, setEmail] = useState("lij28520@zslsz.com");
-    const [password, setPassword] = useState("123456");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = async (event: any) => {
