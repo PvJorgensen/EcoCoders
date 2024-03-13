@@ -5,9 +5,7 @@ import TipsService from '../../services/tips.service';
 import { Navigation } from "../../Components/navBar/Navigation";
 import { Link } from 'react-router-dom';
 
-interface Suggestion {
-    [key: string]: any; 
-}
+
 
 interface Tip {
     id: number;
@@ -17,17 +15,10 @@ interface Tip {
 }
 
 export const TipsPage = () => {
-    const [result, setResult] = useState<Suggestion | null>(null);
     const { getAllTips } = TipsService();
     const [tips, setTips] = useState<Tip[]>([]);
-    const [showContent, setShowContent] = useState(true); // State to control the visibility of the tips content
 
-    const fetchData = async () => {
-        const data = await getAllTips();
-        return data;
-    };
-
-    
+  
 
     useEffect(() => {
         async function fetchTips() {
@@ -68,7 +59,7 @@ export const TipsPage = () => {
                     </div>
                 </Card> 
 
-                {showContent && ( // Only render the content if showContent is true
+                
                     <div className={styles.gridContainer} >
                         {Array.isArray(tips) ? (
                             tips.map((tip) => (
@@ -81,7 +72,6 @@ export const TipsPage = () => {
                             <p>No tips available</p>
                         )}
                     </div>
-                )}
 
             </div>
              <div>

@@ -6,9 +6,7 @@ import { useParams } from 'react-router-dom';
 import { Navigation } from "../../Components/navBar/Navigation";
 
 
-interface Suggestion {
-    [key: string]: any;
-}
+
 interface Tip {
     id: number;
     name: string;
@@ -16,18 +14,10 @@ interface Tip {
     category: string;
 }
 export const CategorizedTips = () => {
-    const [result, setResult] = useState<Suggestion | null>(null);
     const [tips, setTips] = useState<Tip[]>([]);
     const { category } = useParams<{ category: string }>(); //Retrieve the category name from the URL parameters
     const { getAllTips } = TipsService();
-    const [showContent, setShowContent] = useState(true); // State to manage the visibility of the main content
 
-    const fetchData = async () => {
-        const data = await getAllTips();
-        return data;
-    };
-   
-   
     useEffect(() => {
         async function fetchTips() {
             try {
@@ -53,7 +43,7 @@ export const CategorizedTips = () => {
     
                
 
-                {showContent && (
+                
                     <div className={styles.gridContainer} >
                         {Array.isArray(tips) ? (
                             tips.map((tip) => (
@@ -67,7 +57,7 @@ export const CategorizedTips = () => {
                             <p>No events available</p>
                         )}
                     </div>
-                )}
+            
             </div>
 
             <Navigation />
