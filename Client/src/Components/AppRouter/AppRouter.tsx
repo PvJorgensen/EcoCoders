@@ -11,9 +11,8 @@ import Auth from "../../services/auth.service";
 import SignUp from "../../Pages/Login/SignUp"
 import Form from "../../Pages/Login/Form"
 
-
 export const AppRouter = () => {
-    //  Auth();
+    Auth();
 
     return (
         <Routes>

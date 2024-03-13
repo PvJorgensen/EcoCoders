@@ -9,8 +9,8 @@ interface Event {
     description: string;
     longitude: number;
     latitude: number;
-    date_start: Date;
-    date_end: Date;
+    date_start: number;
+    date_end: number;
 }
 
 export const SingleEvent = () => {

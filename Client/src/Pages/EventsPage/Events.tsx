@@ -10,8 +10,8 @@ export const Events = () => {
         description: string;
         longitude: number;
         latitude: number;
-        date_start: Date;
-        date_end: Date;
+        date_start: number;
+        date_end: number;
     }
     const { getAllEvents } = EventService();  //fetching events
     const [events, setEvents] = useState<Event[]>([]);
@@ -28,8 +28,6 @@ export const Events = () => {
         fetchEvents();
     }, []);
       
-
-    console.log(events)
     return (
         <>
             <div>

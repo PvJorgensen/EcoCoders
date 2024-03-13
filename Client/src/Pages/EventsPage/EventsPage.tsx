@@ -4,7 +4,7 @@ import { Events } from './Events'
 
 
 
-  export const EventsPage: React.FC<EventsPageProps> = () => {
+  export const EventsPage: React.FC = () => {
 
     return (
       <div>
