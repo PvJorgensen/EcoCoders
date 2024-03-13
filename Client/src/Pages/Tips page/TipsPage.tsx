@@ -1,10 +1,11 @@
 import  { useEffect, useState } from 'react';
 import { Card } from 'antd';
-import { Link } from 'react-router-dom';
-import Searchbar from '../../Components/Search bar/Searchbar';
+import axios from 'axios';
+import Searchbar from '../../Components/Searchbar/Searchbar';
 import styles from './TPage.module.scss';
 import TipsService from '../../services/tips.service';
 import { Navigation } from "../../Components/navBar/Navigation";
+import { Link } from 'react-router-dom';
 
 interface Suggestion {
     [key: string]: any; 

@@ -5,7 +5,7 @@ import styles from './TPage.module.scss';
 import TipsService from '../../services/tips.service';
 import { useParams } from 'react-router-dom'; 
 import { Navigation } from "../../Components/navBar/Navigation";
-import Searchbar from '../../Components/Search bar/Searchbar';
+import Searchbar from '../../Components/Searchbar/Searchbar';
 
 
 
