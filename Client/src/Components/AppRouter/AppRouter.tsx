@@ -17,6 +17,7 @@ export const AppRouter = () => {
    
     //Auth();
 
+    
     return (
         <Routes>
             <Route index element={<HomePage />}></Route>
