@@ -67,17 +67,22 @@ const SearchBar: React.FC<Props> = ({ fetchData, setResult, suggestionKey }) => 
   return (
     <>
       <div className={styles['container']}>
-        <input
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          type="search"
-          className={styles['textbox']}
-          placeholder="Search"
-          value={value}
-          onChange={handleSearchInputChange}
-          
-        />
-        <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} />
+      <div className={styles['textboxdiv']}>
+  <input
+    onFocus={handleFocus}
+    onBlur={handleBlur}
+    type="search"
+    className={styles['textbox']}
+    placeholder="Search"
+    value={value}
+    onChange={handleSearchInputChange}
+  />
+  <button  >
+    <FontAwesomeIcon icon={faSearch}  />
+  </button>
+</div>
+
+        
         <div
           className={`${styles.suggestions} ${
             hideSuggestions && styles.hidden
@@ -87,7 +92,7 @@ const SearchBar: React.FC<Props> = ({ fetchData, setResult, suggestionKey }) => 
             <div
               
               className={styles.suggestion}
-              onClick={() => findResult((suggestion as any)[suggestionKey])}
+              onMouseDown={() => findResult((suggestion as any)[suggestionKey])}
               >
               {(suggestion as any)[suggestionKey]}
             </div>

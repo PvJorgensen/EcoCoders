@@ -9,6 +9,8 @@
     transition: 0.2s ease-in-out;
     margin-top: 20px;
     background-color: #fbfbfb;
+    position: relative;
+    
    
   }
   
@@ -21,8 +23,6 @@
     width: 30rem;
     position: relative;
   }
-  
-  
   
   .suggestions {
     /* Styles of the suggestions container */
@@ -57,3 +57,19 @@
     background-color:#dedede;
   }
   
+  
+ .textboxdiv {
+  position: relative;
+ }
+  
+ .textboxdiv button{
+  position:absolute;
+  right: 138px ;
+  top: 25px;
+  z-index: 30;
+  border: none;
+  background-color: #fbfbfb;
+  font-size: 1.2em;
+ }
+
+ 
