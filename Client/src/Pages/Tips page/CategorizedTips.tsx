@@ -5,7 +5,14 @@ import styles from './TPage.module.scss';
 import TipsService from '../../services/tips.service';
 import { useParams } from 'react-router-dom'; 
 import { Navigation } from "../../Components/navBar/Navigation";
+import Searchbar from '../../Components/Searchbar/Searchbar';
 
+
+
+
+interface Suggestion {
+    [key: string]: any; 
+}
 interface Tip {
     id: number;
     name: string;
@@ -13,15 +20,23 @@ interface Tip {
     category: string;
 }
 export const CategorizedTips = () => {
-    
+
+    const [result, setResult] = useState<Suggestion | null>(null);
     const { category } = useParams<{ category: string }>(); //Retrieve the category name from the URL parameters
-    const { getAllTipss } = TipsService();
+    const { getAllTips } = TipsService();
     const [tips, setTips] = useState<Tip[]>([]);
+
+    const fetchData = async () => {
+        const  data  = await getAllTips();
+        return data;
+    };
+
+    
 
     useEffect(() => {
         async function fetchTips() {
             try {
-                const tipsData = await getAllTipss();
+                const tipsData = await getAllTips();
                //
                 const filteredTips = tipsData.filter(tip => tip.category === category);
                 setTips(filteredTips);
@@ -36,9 +51,16 @@ export const CategorizedTips = () => {
     return (
         <>
         <div style={{ justifyContent:'center' }}>
-        <Card  style={{ width: 348, height: 100 }} className={`${styles.topCard} `}>
-           <h1> {category}</h1>
+        <Card  style={{ width: 348, height: 90 }} className={`${styles.topCard} `}>
+            <h1> {category}</h1>
          </Card>
+ 
+         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '15px' }}>
+        <div style={{ width: '100%', maxWidth: '348px' }}>
+            <Searchbar fetchData={fetchData} setResult={setResult} suggestionKey="name" />
+        </div>
+    </div>
+    
 
          <div className={styles.gridContainer} >
                 {Array.isArray(tips) ? (

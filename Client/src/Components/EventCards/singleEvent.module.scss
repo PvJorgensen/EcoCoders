@@ -1,0 +1,48 @@
+.card {
+    width: 348px;
+    height: 400px;
+    flex-shrink: 0;
+    border-radius: 26px 26px 26px 26px;
+    border: 3px solid #A8DEE6;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 4%;
+}
+
+.textWrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 22px;
+    h3 {
+        font-size: 24px;
+        margin-top: 15px;
+        margin-top: 5px;
+        margin-bottom: 2px;
+    }
+    p {
+        font-size: 16px;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+}
+.mainText {
+    display: flex;
+    flex-direction: column;
+}
+
+.location {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+}
+
+.dates {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+}
+
+h1 {
+    margin-left: 30px;
+    text-align: left;
+}

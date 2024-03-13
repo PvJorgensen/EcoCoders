@@ -1,7 +1,7 @@
 .card {
     background-color: white;
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 2fr 2fr 0.3fr;
     width: 333px;
     height: 120px;
     margin: auto;
@@ -10,11 +10,6 @@
     border: 3px solid #A8DEE6;
     text-decoration: none;
     color: black;
-}
-
-.textWrapper {
-    display: flex;
-    flex-direction: row;
     h3 {
         font-size: 24px;
         margin-top: 15px;
@@ -22,9 +17,9 @@
         margin-bottom: 2px;
     }
     p {
-        font-size: 16px;
+        font-size: 14px;
         margin-top: 0;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
     }
 }
 
@@ -33,14 +28,18 @@
     flex-direction: column;
 }
 
-.location {
-    display: flex;
-    flex-direction: row;
-    font-size: 14px;
+.button {
+    background-color: #A8DEE6;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    color: #222222;
+    align-items: center;
 }
 
-.dates {
-    display: flex;
-    flex-direction: row;
-    font-size: 14px;
-}
+// .ant-btn {
+//     position: fixed;
+//     top: 20px;
+//     right: 20px;
+//     z-index: 1000;
+//   }
