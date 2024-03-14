@@ -11,7 +11,7 @@ interface ResultProps {
 
 const Result: React.FC<ResultProps> = ({ category, name, description }) => {
   
-  if (category) {
+  if () {
     return (
       <Link to={`/categorizedTips/${encodeURIComponent(category)}`}>
         <Card className={styles.card}>
