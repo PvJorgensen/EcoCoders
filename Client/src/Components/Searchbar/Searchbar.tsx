@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { useDebounce } from './hooks/useDebounce';
 import styles from './Searchbar.module.scss';
-import Result from './Result/Result';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -44,24 +42,7 @@ const SearchBar: React.FC<Props> = ({ fetchData, setResult, suggestionKey }) => 
     }
   };
 
-  useDebounce(
-    async () => {
-      try {
-        const data = await fetchData(value);
-
-        if (Array.isArray(data)) {
-          setSuggestions(data);
-        } else {
-          setSuggestions([data]);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    1000,
-    [value]
-  );
-
+ 
   const handleFocus = () => {
     setHideSuggestions(false);
   };
@@ -86,7 +67,7 @@ const SearchBar: React.FC<Props> = ({ fetchData, setResult, suggestionKey }) => 
               onBlur={handleBlur}
               type="search"
               className={styles['textbox']}
-              placeholder="Buscar"
+              placeholder="Search"
               value={value}
               onChange={handleSearchInputChange}
             />
@@ -111,10 +92,7 @@ const SearchBar: React.FC<Props> = ({ fetchData, setResult, suggestionKey }) => 
         </div>
       </div>
 
-      {/* Mostrar resultados de la búsqueda */}
-      {searchResults.map((result, index) => (
-        <Result key={index} {...result} />
-      ))}
+     
     </>
   );
 };
