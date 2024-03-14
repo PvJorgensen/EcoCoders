@@ -33,6 +33,7 @@ export const TipsPage = () => {
         async function fetchTips() {
             try {
                 const tipsData = await getAllTips();
+                
                 // Filter unique Tip objects based on their category
                 const uniqueTips = tipsData.reduce((unique: Tip[], tip: Tip) => {
                     const existingCategory = unique.find(u => u.category === tip.category);

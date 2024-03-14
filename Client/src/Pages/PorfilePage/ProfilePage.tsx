@@ -6,6 +6,7 @@ import { supabase } from "../../services/clientSupabase";
 import './PeofilePage.css'
 import { Link } from 'react-router-dom';
 import EnvironmentFilled from '@ant-design/icons/lib/icons/EnvironmentFilled';
+import { all } from 'axios';
 
 interface Event {
   id: number;
@@ -16,6 +17,18 @@ interface Event {
   date_start: number;
   date_end: number;
   imageURL: string;
+}
+
+interface Challenge {
+  id: number;
+  name: string;
+  description: string;
+  longitude: number;
+  latitude: number;
+  date_start: number;
+  date_end: number;
+  imageURL: string;
+  id_user: number;
 }
 
 interface User {
@@ -31,6 +44,12 @@ interface UserEvent {
   id_user: number;
   id_event: number;
 }
+
+interface UserChallenge {
+  id_user: number;
+  id_challenge: number;
+}
+
 
 const getUserId = async () => {
   const user = supabase.auth.getSession();
@@ -50,6 +69,8 @@ function ProfilePage() {
   const [events, setEvents] = useState<Event[]>([]);
   const [userEvents, setUserEvents] = useState<UserEvent[]>([]);
   const [userId, setUserId] = useState(0);
+  const [challenges, setChallenges] = useState<Challenge[]>([]);
+  const [userChallenges, setUserChallenges] = useState<UserChallenge[]>([]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -88,6 +109,29 @@ function ProfilePage() {
     if (userEvents.length > 0) fetchEvents();
   }, [userEvents]);
 
+  useEffect(() => {
+    const fetchUserChallenges = async () => {
+      const { data: userChallenges, error } = await supabase.from('UserChallenge').select('*').eq('id_user', userId);
+      if (error) console.error('Error fetching UserChallenge:', error);
+      else setUserChallenges(userChallenges);
+    };
+    if (userId) fetchUserChallenges();
+  }, [userId]);
+
+  useEffect(() => {
+    const fetchChallenges = async () => {
+      const challenges: Challenge[] = [];
+      for (const userChallenge of userChallenges) {
+        const { data: challengeArray, error } = await supabase.from('Challenge').select('*').eq('id_user', userChallenge.id_user);
+        if (error) console.error(`Error fetching Challenge for id ${userChallenge.id_challenge}:`, error);
+        else if (challengeArray && challengeArray.length > 0) challenges.push(challengeArray[length]);
+      }
+      setChallenges(challenges);
+    };
+    if (userChallenges.length > 0) fetchChallenges();
+  }, [userChallenges]);
+
+
   const handleUpdateUser = () => { };
   const handleSignOut = async () => {
     const { error } = await supabase.auth.signOut();
@@ -118,6 +162,20 @@ function ProfilePage() {
                 </div>
               </Link>
             ))}
+        </div>
+        <div className='profile-events'>
+        <h3>Your challenges</h3>
+            {challenges.map(challenge => (
+
+              <div className='card' >
+                <img src={challenge.imageURL} alt="challenge image"  />
+                <div className="event-mainText" >
+                  <h4>{challenge.name}</h4>
+                </div>
+              </div>
+             
+            ))}
+             
         </div>
         <button className='profile-button' onClick={handleSignOut}>SING OUT</button>
       </div>

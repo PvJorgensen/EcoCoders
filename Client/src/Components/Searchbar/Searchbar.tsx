@@ -80,9 +80,9 @@ const SearchBar: React.FC<Props> = ({ fetchData, setResult, suggestionKey }) => 
         />
         { showSuggestions && (
           <div
-          className={`${styles.suggestions}`} 
-          id='suggestion'
-        >
+            className={`${styles.suggestions}`} 
+            id='suggestion'
+          >
           {suggestions.map((suggestion,index) => (
             <div
               key={index} 

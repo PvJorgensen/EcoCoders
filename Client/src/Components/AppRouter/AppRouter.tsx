@@ -14,10 +14,9 @@ import Landing from "../../Pages/Login/Landing"
 import ProfilePage from "../../Pages/PorfilePage/ProfilePage"
 import { DetailTips } from "../../Pages/Tipspage/DetailTips"
 
-
 export const AppRouter = () => {
    
-    // Auth();
+     Auth();
 
     
     return (

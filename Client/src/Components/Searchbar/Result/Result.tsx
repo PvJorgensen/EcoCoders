@@ -27,13 +27,12 @@ type ResultProps = CategoryProps | EventProps;
 const Result: React.FC<ResultProps> = (props) => {
 
   if ('category' in props) {
-    const { id, name, description, category } = props;
+    const { id, name,  category } = props;
     return (
       <div>
-        <Link to={`/categorizedTips/${encodeURIComponent(category)}`}>
+        <Link to={`/detailTips/${encodeURIComponent(category)}/${encodeURIComponent(id)}`}>
           <Card className={styles.detailCard} >
-            <h1>{name}</h1>
-            <p>{description}</p>
+            <h2>{name}</h2>
           </Card>
         </Link>
       </div>
