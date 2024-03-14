@@ -18,21 +18,34 @@
         width: 100%;
     }
     h3 {
-        font-size: 24px;
+        font-size: 36px;
         margin-top: 15px;
         margin-top: 5px;
         margin-bottom: 2px;
+        margin-left: 16px;
     }
     p {
-        font-size: 16px;
-        margin-top: 0;
+        font-size: 24px;
+        margin-top: 5px;
         margin-bottom: 15px;
+        margin-right: 20px;
+        margin-left: 16px;
     }
 }
 .mainText {
+    width: 95%;
+    margin-top: 24px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    a {
+        font-size: 36px;
+        color: black;
+        margin-right: 10px;
+    }
 }
+
 
 .location {
     display: flex;
@@ -44,9 +57,31 @@
     display: flex;
     flex-direction: column;
     font-size: 14px;
+    .datatext {
+        font-size: 24px;
+        margin-top: 0px;
+        margin-bottom: 0;
+    }
 }
 
 h1 {
     margin-left: 30px;
     text-align: left;
+}
+
+.joinbtn {
+    width: 95%;
+    display: flex;
+    justify-content: end;
+    margin-top: 100px;
+    button {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: none;
+        font-size: 20px;
+        background-color: #F7EF81;
+        letter-spacing: 2px;
+        font-weight: 600;
+    }
 }
