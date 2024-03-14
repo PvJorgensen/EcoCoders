@@ -1,11 +1,10 @@
 import  { useEffect, useState } from 'react';
 import { Card } from 'antd';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 import Searchbar from '../../Components/Searchbar/Searchbar';
 import styles from './TPage.module.scss';
 import TipsService from '../../services/tips.service';
 import { Navigation } from "../../Components/navBar/Navigation";
-import { Link } from 'react-router-dom';
 
 interface Suggestion {
     [key: string]: any; 
@@ -78,7 +77,11 @@ export const TipsPage = () => {
                 </div>
 
                 {showContent && ( // Only render the content if showContent is true
-                    <div className={styles.gridContainer} >
+
+                <div style={{ display: 'flex', justifyContent: 'center' }} >
+                         
+                         <div className={styles.gridContainer} >
+
                         {Array.isArray(tips) ? (
                             tips.map((tip) => (
                                 <Link to={`/categorizedTips/${encodeURIComponent(tip.category)}`} key={tip.id}>
@@ -90,6 +93,9 @@ export const TipsPage = () => {
                             <p>No tips available</p>
                         )}
                     </div>
+
+                </div>
+                   
                 )}
 
             </div>

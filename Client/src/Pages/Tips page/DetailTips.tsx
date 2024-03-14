@@ -15,12 +15,14 @@ interface Tip {
     description: string;
     category: string;
 }
-export const CategorizedTips = () => {
+export const DetailTips = () => {
     const [result, setResult] = useState<Suggestion | null>(null);
     const [tips, setTips] = useState<Tip[]>([]);
     const { category } = useParams<{ category: string }>(); //Retrieve the category name from the URL parameters
     const { getAllTips } = TipsService();
     const [showContent, setShowContent] = useState(true); // State to manage the visibility of the main content
+    const { id } = useParams<{ id: string }>();
+
 
     const fetchData = async () => {
         const data = await getAllTips();
@@ -29,16 +31,24 @@ export const CategorizedTips = () => {
 
     useEffect(() => {
         async function fetchTips() {
+
+            if (id) {
             try {
                 const tipsData = await getAllTips();
-                const filteredTips = tipsData.filter(tip => tip.category === category);
+               
+                const filteredTips = tipsData.filter(tip => tip.id == parseInt(id));
+               
                 setTips(filteredTips);
             } catch (error) {
                 console.error('Error fetching tips:', error);
             }
+            
         }
-        fetchTips();
-    }, [category]);
+       
+            
+        
+    } fetchTips();} , [ id]); 
+    
 
     // Handler function to handle suggestion click
     const handleSuggestionClick = () => {
@@ -50,51 +60,39 @@ export const CategorizedTips = () => {
             <div style={{ justifyContent: 'center' }}>
                 <Card style={{ width: 348, height: 90 }} className={`${styles.topCard} `}>
                     <h1> {category}</h1>
-             </Card>
+                </Card>
                 </div>
 
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '15px' }}>
                     <div style={{ width: '100%', maxWidth: '348px' }}>
                         <Searchbar fetchData={fetchData} setResult={setResult} suggestionKey="name" />
                     </div>
+                    
                 </div>
 
-                {showContent && (
+                
+                
+                
                  
-                 <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                     
+                  {Array.isArray(tips) ? (
+                     tips.map((tip) => (
+                       
 
-                    <div className={styles.gridContainer} >
-                        {Array.isArray(tips) ? (
-                            tips.map((tip) => (
-                            <Link to={`/detailTips/${encodeURIComponent(tip.category)}/${encodeURIComponent(tip.id)}`} key={tip.id}>
-                                
-                                <Card className={styles.card} >
-                                    <div key={tip.id} >
-                                        <p>{tip.name}</p>
-                                    </div>
-                                </Card>
-
-
-                            </Link>
-
-                                
-                            ))
-                        ) : (
-                            <p>No events available</p>
-                        )}
-                    </div>
-
-
-                 </div>
-               
-                    
-                    
-
-
-                )}
-
-            
-             
+                 <div key={tip.id}>
+                    <Card className={styles.detailCard} key={tip.id}>
+                        <div>
+                            <h3>{tip.name}</h3>
+                            <p>{tip.description}</p>
+                        </div>
+                    </Card>
+                </div>
+            ))
+        ) : (
+            <p>No events available</p>
+        )}
+    </div>
 
             <Navigation />
         </>
