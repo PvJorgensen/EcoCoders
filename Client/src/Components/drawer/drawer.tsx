@@ -105,9 +105,9 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
       return (
         <>
           <div className="drawer-filter-top">
-            <div onClick={() => actionsItems('List')}>
-              <UnorderedListOutlined />
-              <p>List</p>
+            <div onClick={() => actionsItems('Show all')}>
+              <FilterOutlined />
+              <p>Show all</p>
             </div>
             <div onClick={() => actionsItems('Events')}>
               <EnvironmentFilled />
@@ -119,17 +119,13 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
             </div>
           </div>
           <div className="drawer-filter-bottom">
-            <div onClick={() => actionsItems('Challenges')}>
-              <TrophyOutlined />
-              <p>Challenges</p>
-            </div>
             <div onClick={() => actionsItems('Create')}>
               <PlusCircleFilled />
               <p>Create</p>
             </div>
-            <div onClick={() => actionsItems('Show all')}>
-              <FilterOutlined />
-              <p>Show all</p>
+            <div onClick={() => actionsItems('List')}>
+              <UnorderedListOutlined />
+              <p>List</p>
             </div>
           </div>
         </>

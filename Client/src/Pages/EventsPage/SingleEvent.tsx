@@ -11,6 +11,7 @@ interface Event {
     latitude: number;
     date_start: number;
     date_end: number;
+    imageURL: string ;
 }
 
 export const SingleEvent = () => {
@@ -44,6 +45,7 @@ console.log(event)
             latitude={event.latitude}
             date_start={event.date_start}
             date_end={event.date_end}
+            img={event.imageURL}
             />
         </div>
     );
