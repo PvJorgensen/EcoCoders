@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { useDebounce } from '../Searchbar/hooks/useDebounce';
 import styles from './Searchbar.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import Result from '../Searchbar/Result/Result';
 
 interface Suggestion {
+  id: number;
   name: string;
   description: string;
   category: string;
@@ -26,10 +27,10 @@ interface Props {
 }
 
 const SearchBar: React.FC<Props> = ({ fetchData, setResult, suggestionKey }) => {
-  const [value, setValue] = useState(''); // Este es el valor del campo de búsqueda
-  const [suggestions, setSuggestions] = useState<(Suggestion | SuggestionEvent)[]>([]); // Aquí es donde se almacenan las sugerencias de búsqueda
-  const [hideSuggestions, setHideSuggestions] = useState(true);
-  const [searchResults, setSearchResults] = useState<(Suggestion | SuggestionEvent)[]>([]); // Almacena los resultados de la búsqueda
+  const [value, setValue] = useState(''); //this is the value of the search bar
+  const [suggestions, setSuggestions] = useState<Suggestion[]>([]); // this is where the search suggestions get stored
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [searchResults, setSearchResults] = useState<(Suggestion| SuggestionEvent)[]>([]); // Store search results
 
   const findResult = (value: string) => {
     const result = suggestions.find((suggestion) => (suggestion as any)[suggestionKey] === value);
@@ -40,59 +41,64 @@ const SearchBar: React.FC<Props> = ({ fetchData, setResult, suggestionKey }) => 
       setResult(null);
       setSearchResults([]);
     }
-  };
+  }; 
 
- 
+  useDebounce({ value, setSuggestions, fetchData }, 1000, [value]);  
+
   const handleFocus = () => {
-    setHideSuggestions(false);
+    setShowSuggestions(true);
   };
 
   const handleBlur = () => {
     setTimeout(() => {
-      setHideSuggestions(true);
+      setShowSuggestions(false);
     }, 200);
   };
 
-  const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+  const handleSearchInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    setValue(inputValue);
+
+    // Fetch suggestions from API based on inputValue
+    const fetchedSuggestions = await fetchData(inputValue);
+
+    // Show suggestions only if there are suggestions and the input value is not empty
+    setShowSuggestions(fetchedSuggestions.length > 0 && inputValue.trim() !== '');
   };
 
   return (
     <>
-      <div className={styles['container']}>
-        <div className={styles['textboxdiv']}>
-          <div className={styles['textbox-with-icon']}>
-            <input
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              type="search"
-              className={styles['textbox']}
-              placeholder="Search"
-              value={value}
-              onChange={handleSearchInputChange}
-            />
-            <button className={styles['search-button']}>
-              <FontAwesomeIcon icon={faSearch} />
-            </button>
-          </div>
-        </div>
-
-        <div
-          className={`${styles.suggestions} ${hideSuggestions && styles.hidden}`}
-        >
-          {suggestions.map((suggestion, index) => (
+      <div className={styles['container']} id="searchBarContainer">
+        <input
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          type="search"
+          className={styles['textbox']}
+          placeholder="Search"
+          value={value}
+          onChange={handleSearchInputChange}
+        />
+        { showSuggestions && (
+          <div
+            className={`${styles.suggestions}`} 
+            id='suggestion'
+          >
+          {suggestions.map((suggestion,index) => (
             <div
-              key={index}
+              key={index} 
               className={styles.suggestion}
-              onMouseDown={() => findResult((suggestion as any)[suggestionKey])}
+              onMouseDown={() => findResult( (suggestion as any)[suggestionKey])}
             >
-              {(suggestion as any)[suggestionKey]}
+              { (suggestion as any)[suggestionKey]}
             </div>
           ))}
         </div>
+        )}
       </div>
-
-     
+      {/* Display search results */}
+      { searchResults.map((result, index) => (
+        <Result key={index} {...result} />
+      ))}
     </>
   );
 };

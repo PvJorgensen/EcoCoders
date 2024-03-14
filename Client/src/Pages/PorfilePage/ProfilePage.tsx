@@ -120,7 +120,6 @@ function ProfilePage() {
     if (error) console.log("Error signing out:", error.message);
   }
 
-
   const handleSubmit = async () => {
     try {
       const response = await axiosInstance.patch(`/User?id=eq.${userData.id}`,{
@@ -134,10 +133,6 @@ function ProfilePage() {
     }
   };
 
-
-
-
-
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
       <div className='profile-container'>
@@ -150,7 +145,6 @@ function ProfilePage() {
           <h2 className='profile-name'>{userData.name}</h2>
           <SettingOutlined style={{ position: 'absolute', right: '2.1em', top: '30vh' }} className="settings" onClick={showModal} />
         </div>
-
         <Modal className="blue-background-modal" visible={isModalVisible} footer={null} onOk={handleOk} onCancel={handleCancel}>
           <form className="settings-form" onSubmit={handleSubmit}>
             <input
