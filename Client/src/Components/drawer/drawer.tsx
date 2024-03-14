@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./drawer.css";
-import { EnvironmentFilled, FilterOutlined, PlusCircleFilled, TrophyOutlined, UnorderedListOutlined } from "@ant-design/icons";
+import { EnvironmentFilled, FilterOutlined, PlusCircleFilled, UnorderedListOutlined } from "@ant-design/icons";
 import { setGlobalVariableGreenPoints, setGlobalVariableMarks } from "../const/const";
 import { useNavigate } from "react-router-dom";
 
@@ -79,11 +79,13 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
           setGlobalVariableMarks(false);
           setGlobalVariableGreenPoints(true);
           onClose();
+          navigate('/map');
           break;
         case 'Green Points':
           setGlobalVariableGreenPoints(false);
           setGlobalVariableMarks(true);
           onClose();
+          navigate('/map');
           break;
         case 'Challenges':
           navigate('/challenges');
@@ -95,6 +97,7 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
           setGlobalVariableGreenPoints(false);
           setGlobalVariableMarks(false);
           onClose();
+          navigate('/map');
           break;
         default:
       }
@@ -105,9 +108,9 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
       return (
         <>
           <div className="drawer-filter-top">
-            <div onClick={() => actionsItems('List')}>
-              <UnorderedListOutlined />
-              <p>List</p>
+            <div onClick={() => actionsItems('Show all')}>
+              <FilterOutlined />
+              <p>Show all</p>
             </div>
             <div onClick={() => actionsItems('Events')}>
               <EnvironmentFilled />
@@ -119,17 +122,13 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
             </div>
           </div>
           <div className="drawer-filter-bottom">
-            <div onClick={() => actionsItems('Challenges')}>
-              <TrophyOutlined />
-              <p>Challenges</p>
-            </div>
             <div onClick={() => actionsItems('Create')}>
               <PlusCircleFilled />
               <p>Create</p>
             </div>
-            <div onClick={() => actionsItems('Show all')}>
-              <FilterOutlined />
-              <p>Show all</p>
+            <div onClick={() => actionsItems('List')}>
+              <UnorderedListOutlined />
+              <p>List</p>
             </div>
           </div>
         </>

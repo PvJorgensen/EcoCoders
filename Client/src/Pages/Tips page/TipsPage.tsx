@@ -1,11 +1,11 @@
 import  { useEffect, useState } from 'react';
 import { Card } from 'antd';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 import Searchbar from '../../Components/Searchbar/Searchbar';
 import styles from './TPage.module.scss';
 import TipsService from '../../services/tips.service';
 import { Navigation } from "../../Components/navBar/Navigation";
-import { Link } from 'react-router-dom';
+import defaultimg from '../../assets/Pizza.svg'
 
 interface Suggestion {
     [key: string]: any; 
@@ -52,16 +52,17 @@ export const TipsPage = () => {
     return (
         <>
             <div style={{ justifyContent: 'center' }}>
-                <h2 className={`${styles.h2} `}>Welcome to your eco-encyclopedia!</h2>
+                <h2 className={`${styles.h2} `}> <span>Welcome to your</span> <br></br> eco-encyclopedia!</h2>
+                
 
                 <Card style={{ width: 348, height: 190 }} className={`${styles.topCard} `}>
                     <h3 style={{ color: "black", textAlign: "center" }}>DAILY TIPS</h3>
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', alignItems: 'center'}}>
                         <p style={{ flex: 1 }}>
                             If a pizza box is cheesy or oily, compost it if possible. Otherwise put it in the trash
                         </p>
                         <img
-                            src="https://th.bing.com/th?id=OIP.8ti7pBA9iqulyrvakdFG0QHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2"
+                            src={defaultimg}
                             style={{ width: 121, height: 121 }}
                             alt="Tip Image"
                         />
@@ -78,7 +79,11 @@ export const TipsPage = () => {
                 </div>
 
                 {showContent && ( // Only render the content if showContent is true
-                    <div className={styles.gridContainer} >
+
+                <div style={{ display: 'flex', justifyContent: 'center' }} >
+                         
+                         <div className={styles.gridContainer} >
+
                         {Array.isArray(tips) ? (
                             tips.map((tip) => (
                                 <Link to={`/categorizedTips/${encodeURIComponent(tip.category)}`} key={tip.id}>
@@ -90,6 +95,9 @@ export const TipsPage = () => {
                             <p>No tips available</p>
                         )}
                     </div>
+
+                </div>
+                   
                 )}
 
             </div>

@@ -13,6 +13,7 @@ export default function EventService() {
         latitude: number; 
         date_start: number; //In typeScript there is no TimeStamp, so we have to use number
         date_end: number; //In typeScript there is no TimeStamp, so we have to use number
+        imageURL: string ;
     }
 
     const getAllEvents = async (): Promise<Event[]> => {
