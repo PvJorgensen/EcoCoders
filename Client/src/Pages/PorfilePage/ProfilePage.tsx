@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Avatar, Upload } from 'antd';
 import { Navigation } from '../../Components/navBar/Navigation';
 import defaultimg from '../../assets/woman.jpg'
