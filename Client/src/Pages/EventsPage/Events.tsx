@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { EventCard } from '../../Components/EventCards/EventCard';
 import EventService from '../../services/event.service';
 import SearchBar from '../../Components/Searchbar/Searchbar';
-
 export const Events = () => {
 
     interface Suggestion {
@@ -61,7 +60,7 @@ export const Events = () => {
                         {events ? (
                             events.map((event: Event) => (
                                 <EventCard key={event.id}
-                                    img={event.imageURL}
+                                    img ={event.imageURL}
                                     id={event.id}
                                     name={event.name}
                                     description={event.description}
