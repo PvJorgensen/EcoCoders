@@ -12,6 +12,8 @@ import SignUp from "../../Pages/Login/SignUp"
 import Form from "../../Pages/Login/Form"
 import Landing from "../../Pages/Login/Landing"
 import ProfilePage from "../../Pages/PorfilePage/ProfilePage"
+import { DetailTips } from "../../Pages/Tips page/DetailTips"
+
 
 export const AppRouter = () => {
    
@@ -25,6 +27,8 @@ export const AppRouter = () => {
             <Route path="landing" element={<Landing />} />
 
             <Route path="tips" element={<TipsPage />} />
+            <Route path="detailtips/:category/:id" element={<DetailTips />} />
+
             <Route path="categorizedTips/:category" element={<CategorizedTips />} />
             <Route path="*" element={<PageNotFound />}></Route>
             <Route path="events" element={<EventsPage />} />

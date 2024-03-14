@@ -17,7 +17,7 @@ interface EventCardProps {
   img: string;
 }
 
-export const EventCard: React.FC<EventCardProps> = ({ id, name, longitude, latitude, date_start, date_end }) => {
+export const EventCard: React.FC<EventCardProps> = ({ id, name, longitude, latitude, date_start, date_end,img }) => {
   const date_end_formatted = new Date(date_end)
   const date_start_formatted = new Date(date_start)
   

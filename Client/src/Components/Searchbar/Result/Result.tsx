@@ -7,12 +7,10 @@ import { Link } from 'react-router-dom';
 interface ResultProps {
     category?: string; 
     name?: string; 
-    description?: string; 
-}
+    description?: string; }
 
 const Result: React.FC<ResultProps> = ({ category, name, description }) => {
-
- 
+  
   if (category) {
     return (
       <Link to={`/categorizedTips/${encodeURIComponent(category)}`}>
@@ -23,10 +21,10 @@ const Result: React.FC<ResultProps> = ({ category, name, description }) => {
     );
   }
   
-  
-  else {
+ 
+  if (name && description) {
     return (
-      <Card >
+      <Card className={styles.card}>
         <div>
           <h2>{name}</h2>
           <p>{description}</p>
@@ -35,7 +33,7 @@ const Result: React.FC<ResultProps> = ({ category, name, description }) => {
     );
   }
 
-  
+  // Par défaut, renvoyer un composant vide
   return null;
 };
 
