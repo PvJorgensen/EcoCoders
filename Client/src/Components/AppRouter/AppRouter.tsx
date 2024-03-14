@@ -29,6 +29,7 @@ export const AppRouter = () => {
             <Route path="*" element={<PageNotFound />}></Route>
             <Route path="events" element={<EventsPage />} />
             <Route path="map" element={<MapPage />}></Route>
+            <Route path="map/:id" element={<MapPage />}></Route>
             <Route path="event/:id" element={<SingleEvent />}></Route>  
             <Route path="login" element={<Login />}></Route>
             <Route path="signup" element={<SignUp />}></Route>
