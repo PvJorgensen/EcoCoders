@@ -37,7 +37,7 @@ export default function ChallengeService() {
         }
     };
 
-    //rember to do a post, the infotmation must be like this:
+    //rember to do a post, the information must be like this:
     //{
     //  "id:" 1,
     //  "name": "..."

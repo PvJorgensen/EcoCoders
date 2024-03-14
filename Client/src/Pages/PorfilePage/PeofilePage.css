@@ -117,25 +117,11 @@
     margin-left: 0;
 }
 
-.settings {
-    color: #1E6091;
-    font-size: 30px;
-}
-
-.settings-item {
-    margin-top: 30%;
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    justify-content: center;
-    border: 2px solid #A8DEE6;
-    border-radius: 10px;
-    align-items: center;
-
-}
 
 .settings-item>form {
-    /* background-color: #A8DEE6; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .settings-input {
@@ -150,14 +136,47 @@
 
 }
 
-.settings-item .ant-modal-content {
-    /* background-color: #A8DEE6; */
- /* Ajusta este valor según el tamaño que desees */
+.settings-form {
+    margin-top: 2em;
 }
 
+.settings-form>textarea {
+    height: 8em;
+}
 
-.ant-modal-close-x {
-    font-weight: bold;
-    color: #1E6091;
-    font-size: 10em; /* Ajusta este valor según el tamaño que desees */
+.settings-button {
+    background-color: #1E6091;
+    border: none;
+    border-radius: 6px;
+    height: 3em;
+    color: white;
+    width: 60%;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    font-size: 18px;
+}
+
+.blue-background-modal .ant-modal-content{
+    background-color: #A8DEE6;
+}
+
+.ant-modal-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+}
+
+.ant-modal-body>form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-family: "Roboto", sans-serif;
+}
+
+.ant-modal-body>form>textarea {
+    font-family: "Roboto", sans-serif;
 }

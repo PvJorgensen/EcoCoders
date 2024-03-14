@@ -7,6 +7,7 @@ import './PeofilePage.css'
 import '../Login/Landing.css'
 import { Link } from 'react-router-dom';
 import SettingOutlined from '@ant-design/icons/lib/icons/SettingOutlined';
+import axiosInstance from '../../services/axios.service';
 
 interface Event {
   id: number;
@@ -41,6 +42,11 @@ function ProfilePage() {
     email: '',
     description: '',
     auth_id: null,
+  });
+  const [newUserData, setNewUserData] = useState({
+    id: 0,
+    name: '',
+    description:''
   });
   const [events, setEvents] = useState<Event[]>([]);
   const [userEvents, setUserEvents] = useState<UserEvent[]>([]);
@@ -84,7 +90,14 @@ function ProfilePage() {
     const fetchUserEvents = async () => {
       const { data: userEvents, error } = await supabase.from('UserEvent').select('*').eq('id_user', userId);
       if (error) console.error('Error fetching UserEvent:', error);
-      else setUserEvents(userEvents);
+      else {
+        setUserEvents(userEvents);
+        setNewUserData({
+          id: userData.id,
+          name: userData.name,
+          description: userData.description,
+        })
+      }
     };
     if (userId) fetchUserEvents();
   }, [userId]);
@@ -102,17 +115,34 @@ function ProfilePage() {
     if (userEvents.length > 0) fetchEvents();
   }, [userEvents]);
 
-  const handleUpdateUser = () => { };
   const handleSignOut = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) console.log("Error signing out:", error.message);
   }
 
+
+  const handleSubmit = async () => {
+    try {
+      const response = await axiosInstance.patch(`/User?id=eq.${userData.id}`,{
+        "id": userData.id,
+        "name": newUserData.name,
+        "description": newUserData.description
+      });
+        return response.data;
+    } catch (error) {
+      console.error('Error updating data: ', error, "name", newUserData.name,);
+    }
+  };
+
+
+
+
+
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
       <div className='profile-container'>
         <div className="profile-background-img" style={{ backgroundImage: `url('/fondo.jpg')`, width: '100%', height: '23vh', backgroundSize: '100% 100%', borderBottom: 'solid 3px #1E6091' }}>
-          <Upload className='user-upload' showUploadList={false} onChange={handleUpdateUser} >
+          <Upload className='user-upload' showUploadList={false} >
             <Avatar size={90} icon={<img src={defaultimg} />} className="user-avatar" />
           </Upload>
         </div>
@@ -121,23 +151,32 @@ function ProfilePage() {
           <SettingOutlined style={{ position: 'absolute', right: '2.1em', top: '30vh' }} className="settings" onClick={showModal} />
         </div>
 
-        <Modal className="settings-item" title="Settings" visible={isModalVisible} footer={null} onOk={handleOk} onCancel={handleCancel}>
-          <form>
+        <Modal className="blue-background-modal" visible={isModalVisible} footer={null} onOk={handleOk} onCancel={handleCancel}>
+          <form className="settings-form" onSubmit={handleSubmit}>
             <input
               type="text"
               name="name"
               placeholder={userData.name}
               className="settings-input"
+              onChange={(event) => setNewUserData({
+                "id": newUserData.id,
+                "name": event.target.value,
+                "description": newUserData.description})
+              }
             />
-            <input
-              type="text"
+            <textarea
               name="description"
               placeholder={userData.description}
               className="settings-input"
+              onChange={(event) => setNewUserData({
+                "id": newUserData.id,
+                "name": newUserData.name,
+                "description": event.target.value})
+              }
             />
-
+            <button className="settings-button">UPDATE PROFILE</button>
           </form>
-          <button onClick={handleSignOut} className="profile-button">Sign Out</button>
+          <button onClick={handleSignOut} className="settings-button">Sign Out</button>
         </Modal>
         <div className='profile-description'>
           <p className='profile-description-text'>{userData.description}</p>
@@ -145,6 +184,7 @@ function ProfilePage() {
         <div className='profile-events'>
           <h3>Events Joined:</h3>
           {events.map(event => (
+            <div key={event.id}>
             <Link to={`/event/${event.id}`} className="event-card" key={event.id}>
               <img src={event.imageURL} alt="event image" className='event-image' />
               <div className="event-mainText">
@@ -152,11 +192,14 @@ function ProfilePage() {
                 <p>{event.description.length > 25 ? event.description.substring(0, 25) + '...' : event.description}</p>
               </div>
             </Link>
+            <button key={event.id}>hola</button>
+            </div>
           ))}
         </div>
       </div>
       <Navigation />
     </div>
   );
-};
+}
+
 export default ProfilePage

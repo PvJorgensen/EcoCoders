@@ -8,6 +8,7 @@ import EventService from "../../services/event.service";
 import GreenPointService from "../../services/greenpoints.service";
 import { GLOBAL_VARIABLE_GREENPOINTS, GLOBAL_VARIABLE_MARKS } from "../../Components/const/const";
 import { useParams } from "react-router-dom";
+import OpenDrawerSVG from '../../assets/OpenDrawer.svg';
 
 
 interface MapPageProps {
@@ -76,7 +77,7 @@ export const MapPage: React.FC<MapPageProps> = () => {
 
     return (
         <div style={{ width: '100vw', height: '100vh' }}>
-            <Button type="default" shape="circle" size="large" onClick={openDrawer} />
+            <Button icon={<img style={{width: '25px'}} src={OpenDrawerSVG} alt="Open Drawer"/>} className="rounded-button" type="default" shape="circle" size="large" onClick={openDrawer} />
             <Map marks={!GLOBAL_VARIABLE_MARKS ? marks : null} greenpoints={!GLOBAL_VARIABLE_GREENPOINTS ? greenpoints : null} selectable={false} />
             <Drawer isOpen={drawer} onClose={closeDrawer} isfilter={true} />
             <Navigation />

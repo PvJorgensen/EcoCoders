@@ -16,7 +16,7 @@ export const EventsPage: React.FC = () => {
   return (
     <div style={{width: '100vw',height: '100vh'}}>
       <h1 style={{bottom: 0}}>EVENTS</h1>
-      <Button icon={<EnvironmentFilled />}type="default" shape="circle" size="large"onClick={openMapPage} />
+      <Button style={{position: 'fixed', top: '20px', right: '20px' }} icon={<EnvironmentFilled />}type="default" shape="circle" size="large"onClick={openMapPage} />
       <Events />
       <Navigation />
     </div>
