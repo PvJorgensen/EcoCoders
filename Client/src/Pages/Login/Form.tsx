@@ -49,11 +49,6 @@ function Form() {
         }
     }
 
-    const handleSignOut = async () => {
-        const { error } = await supabase.auth.signOut();
-        if (error) console.log("Error signing out:", error.message);
-    }
-
     return (
         <div className="login-container">
             <form className="login-item" onSubmit={handleSubmit}>

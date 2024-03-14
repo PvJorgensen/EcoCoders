@@ -83,6 +83,17 @@ export default function EventService() {
         }
     };
 
+    const getUsersCountByEventId = async (eventId: number): Promise<number> => {
+        try {
+            const response = await axiosInstance.get(`/${userJoinEventTable}?id_event=eq.${eventId}`);
+            return response.data.length;
+        } catch (error) {
+            console.error(`Error fetching users for event with id ${eventId} :`, error);
+            throw error;
+        }
+    };
+    
+
     // Find The Events from a user
     const getUsersInOneEvent = async (EventId: number): Promise<Event[]> => {
         try {
@@ -97,8 +108,8 @@ export default function EventService() {
     // Join a Event
     const joinEvent = async (userId: number, EventId: number): Promise<void> => {
         try {
-            const userEventData = { id_user: userId, id_Event: EventId };
-            await axiosInstance.post(`/${userJoinEventTable}`, userEventData);
+            const userEventData = { id_user: userId, id_event: EventId };
+            await axiosInstance.post("/UserEvent", userEventData);
         } catch (error) {
             console.error(`Error joining Event with id ${EventId} :`, error);
             throw error;
@@ -125,6 +136,7 @@ export default function EventService() {
         getEventsByUserId,
         getUsersInOneEvent,
         joinEvent,
+        getUsersCountByEventId,
         leaveEvent
     };
 }

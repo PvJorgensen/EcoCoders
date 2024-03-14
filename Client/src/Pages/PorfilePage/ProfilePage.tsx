@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Avatar, Upload } from 'antd';
+import { Avatar, Upload, Modal } from 'antd';
 import { Navigation } from '../../Components/navBar/Navigation';
 import defaultimg from '../../assets/woman.jpg'
 import { supabase } from "../../services/clientSupabase";
 import './PeofilePage.css'
+import '../Login/Landing.css'
 import { Link } from 'react-router-dom';
 import SettingOutlined from '@ant-design/icons/lib/icons/SettingOutlined';
 
@@ -32,12 +33,6 @@ interface UserEvent {
   id_event: number;
 }
 
-const getUserId = async () => {
-  const user = supabase.auth.getSession();
-  const userId = ((await user).data.session?.user.id)
-  return userId
-}
-
 function ProfilePage() {
   const [userData, setUserData] = useState<User>({
     id: 0,
@@ -50,6 +45,25 @@ function ProfilePage() {
   const [events, setEvents] = useState<Event[]>([]);
   const [userEvents, setUserEvents] = useState<UserEvent[]>([]);
   const [userId, setUserId] = useState(0);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const getUserId = async () => {
+    const user = supabase.auth.getSession();
+    const userId = ((await user).data.session?.user.id)
+    return userId
+  }
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -93,6 +107,7 @@ function ProfilePage() {
     const { error } = await supabase.auth.signOut();
     if (error) console.log("Error signing out:", error.message);
   }
+
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
       <div className='profile-container'>
@@ -101,26 +116,44 @@ function ProfilePage() {
             <Avatar size={90} icon={<img src={defaultimg} />} className="user-avatar" />
           </Upload>
         </div>
-        <SettingOutlined />
         <div className='profile-title'>
           <h2 className='profile-name'>{userData.name}</h2>
+          <SettingOutlined style={{ position: 'absolute', right: '2.1em', top: '30vh' }} className="settings" onClick={showModal} />
         </div>
+
+        <Modal className="settings-item" title="Settings" visible={isModalVisible} footer={null} onOk={handleOk} onCancel={handleCancel}>
+          <form>
+            <input
+              type="text"
+              name="name"
+              placeholder={userData.name}
+              className="settings-input"
+            />
+            <input
+              type="text"
+              name="description"
+              placeholder={userData.description}
+              className="settings-input"
+            />
+
+          </form>
+          <button onClick={handleSignOut} className="profile-button">Sign Out</button>
+        </Modal>
         <div className='profile-description'>
           <p className='profile-description-text'>{userData.description}</p>
         </div>
         <div className='profile-events'>
           <h3>Events Joined:</h3>
-            {events.map(event => (
-              <Link to={`/event/${event.id}`} className="event-card" key={event.id}>
-                <img src={event.imageURL} alt="event image" className='event-image' />
-                <div className="event-mainText">
-                  <h4>{event.name}</h4>
-                  <p>{event.description.length > 25 ? event.description.substring(0, 25) + '...' : event.description}</p>
-                </div>
-              </Link>
-            ))}
+          {events.map(event => (
+            <Link to={`/event/${event.id}`} className="event-card" key={event.id}>
+              <img src={event.imageURL} alt="event image" className='event-image' />
+              <div className="event-mainText">
+                <h4>{event.name}</h4>
+                <p>{event.description.length > 25 ? event.description.substring(0, 25) + '...' : event.description}</p>
+              </div>
+            </Link>
+          ))}
         </div>
-        <button className='profile-button' onClick={handleSignOut}>SING OUT</button>
       </div>
       <Navigation />
     </div>
