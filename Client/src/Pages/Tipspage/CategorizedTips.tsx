@@ -61,7 +61,7 @@ export const CategorizedTips = () => {
 
                 {showContent && (
                  
-                 <div style={{ display: 'flex', justifyContent: 'center' }}>
+                 <div style={{ display: 'flex', justifyContent: 'center',marginTop:'10px' }}>
 
                     <div className={styles.gridContainer} >
                         {Array.isArray(tips) ? (
