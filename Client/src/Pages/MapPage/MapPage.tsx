@@ -76,7 +76,7 @@ export const MapPage: React.FC<MapPageProps> = () => {
 
     return (
         <div style={{ width: '100vw', height: '100vh' }}>
-            <Button type="default" shape="circle" size="large" onClick={openDrawer} />
+            <Button className="rounded-button" type="default" shape="circle" size="large" onClick={openDrawer} />
             <Map marks={!GLOBAL_VARIABLE_MARKS ? marks : null} greenpoints={!GLOBAL_VARIABLE_GREENPOINTS ? greenpoints : null} selectable={false} />
             <Drawer isOpen={drawer} onClose={closeDrawer} isfilter={true} />
             <Navigation />

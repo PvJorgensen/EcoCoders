@@ -130,7 +130,7 @@ const Map: React.FC<MapProps> = ({ marks, greenpoints, selectable }) => {
                 {GreenPointspins}
                 {pins}
                 {selectablePin}
-                <DrawerComponents isOpen={openDrawer} onClose={closeDrawer} isfilter={false}/>
+                {openDrawer && <DrawerComponents isOpen={openDrawer} onClose={closeDrawer} isfilter={false}/>}
             </ReactMapGL>
         </>
     );
