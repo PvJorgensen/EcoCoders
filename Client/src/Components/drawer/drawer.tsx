@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, ReactNode } from "react";
 import "./drawer.css";
 import { EnvironmentFilled, FilterOutlined, PlusCircleFilled, UnorderedListOutlined, UploadOutlined } from "@ant-design/icons";
 import { setGlobalVariableGreenPoints, setGlobalVariableMarks } from "../const/const";
@@ -13,9 +13,10 @@ interface DrawerProps {
   isOpen: boolean;
   onClose: () => void;
   isfilter: boolean;
+  renderEvents?: () => ReactNode;
 }
 
-const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
+const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter,  renderEvents }) => {
 
   const navigate = useNavigate();
   const [startY, setStartY] = useState(0);
@@ -88,6 +89,8 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
     setIsClosingModal(false);
   }
 
+  const [activeitem,setActiveItem] = useState<string>('Show all');
+
   const filter = () => {
     const actionsItems = (value: string) => {
       console.log('Action item clicked:', value);
@@ -101,12 +104,14 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
           setGlobalVariableGreenPoints(true);
           onClose();
           navigate('/map');
+          setActiveItem('Events');
           break;
         case 'Green Points':
           setGlobalVariableGreenPoints(false);
           setGlobalVariableMarks(true);
           onClose();
           navigate('/map');
+          setActiveItem('Green Points')
           break;
         case 'Challenges':
           navigate('/challenges');
@@ -120,6 +125,7 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
           setGlobalVariableMarks(false);
           onClose();
           navigate('/map');
+          setActiveItem('Show all')
           break;
         default:
       }
@@ -130,15 +136,15 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
       return (
         <>
           <div className="drawer-filter-top">
-            <div onClick={() => actionsItems('Show all')}>
+            <div  className={activeitem === 'Show all' ? 'active' : ''} onClick={() => actionsItems('Show all')}>
               <img src={ShowAllSVG} alt="Show All SVG" />
               <p>Show all</p>
             </div>
-            <div onClick={() => actionsItems('Events')}>
+            <div  className={activeitem === 'Events' ? 'active' : ''} onClick={() => actionsItems('Events')}>
               <EnvironmentFilled />
               <p>Events</p>
             </div>
-            <div onClick={() => actionsItems('Green Points')}>
+            <div  className={activeitem === 'Green Points' ? 'active' : ''} onClick={() => actionsItems('Green Points')}>
               <img src={GreenpointsSVG} alt="Greenpoints SVG" />
               <p>Green Points</p>
             </div>
@@ -185,6 +191,7 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
       <div className="drawer-content">
         <div className="swipe" />
         {filter()}
+        {renderEvents && renderEvents()}
         <PopForm renderInputs={renderInputs} cancel={closeModal} showModalAutomatically={isClosingModal} ></PopForm>
       </div>
     </div>

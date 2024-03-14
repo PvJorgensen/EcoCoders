@@ -61,6 +61,14 @@
     justify-content: center;
 }
 
+.drawer-filter-top div.active img{
+    background-color: #E6A8BF;
+}
+
+.drawer-filter-top div.active span{
+    background-color: #E6A8BF;
+}
+
 .drawer-filter-top div p{
     font-size: 1.2rem;
     margin-top: 0.5rem;
