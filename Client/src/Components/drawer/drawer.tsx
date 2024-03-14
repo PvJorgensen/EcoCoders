@@ -79,11 +79,13 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
           setGlobalVariableMarks(false);
           setGlobalVariableGreenPoints(true);
           onClose();
+          navigate('/map');
           break;
         case 'Green Points':
           setGlobalVariableGreenPoints(false);
           setGlobalVariableMarks(true);
           onClose();
+          navigate('/map');
           break;
         case 'Challenges':
           navigate('/challenges');
@@ -95,6 +97,7 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
           setGlobalVariableGreenPoints(false);
           setGlobalVariableMarks(false);
           onClose();
+          navigate('/map');
           break;
         default:
       }
