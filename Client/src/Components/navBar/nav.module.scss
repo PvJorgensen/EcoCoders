@@ -13,7 +13,8 @@
     bottom: 2%;
 }
 
-.navbar a {
+.navbar  {
+    a {
     background-color: #1E6091;
     display: flex;
     align-items: center;
@@ -21,15 +22,13 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    font-size: 35px;
+    }
 }
 
 .navbar a.active {
     transition: 0.3s ease-in-out;
     transform: scale(1.6) translateY(-10%);
-}
-
-a {
-    color: white;
-    text-decoration: none;
-    font-size: 35px;
 }
