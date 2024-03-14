@@ -14,6 +14,7 @@ export default function ChallengeService() {
         date_start: number; //In typeScript there is no TimeStamp, so we have to use number
         date_end: number; //In typeScript there is no TimeStamp, so we have to use number
         id_user: number;
+        imageURL: string;
     }
 
     const getAllChallenges = async (): Promise<Challenge[]> => {
@@ -21,7 +22,7 @@ export default function ChallengeService() {
             const response = await axiosInstance.get<Challenge[]>(`/${challengeTable}`);
             return response.data;
         } catch (error) {
-            console.error('Error fetching Challenges:', error);
+            console.error('Error fetching challenges:', error);
             throw error;
         }
     };

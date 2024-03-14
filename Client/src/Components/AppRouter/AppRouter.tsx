@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom"
 import { HomePage } from "../../Pages/HomePage/HomePage"
-import { TipsPage } from "../../Pages/Tips page/TipsPage"
+import { TipsPage } from "../../Pages/Tipspage/TipsPage"
 import { PageNotFound } from "../../Pages/PageNotFound/PageNotFound"
 import { EventsPage } from "../../Pages/EventsPage/EventsPage" 
 import { MapPage } from "../../Pages/MapPage/MapPage"
-import { CategorizedTips } from "../../Pages/Tips page/CategorizedTips"
+import { CategorizedTips } from "../../Pages/Tipspage/CategorizedTips"
 import { SingleEvent } from "../../Pages/EventsPage/SingleEvent"
 import Login from "../../Pages/Login/Login"
 import Auth from "../../services/auth.service";
@@ -12,12 +12,11 @@ import SignUp from "../../Pages/Login/SignUp"
 import Form from "../../Pages/Login/Form"
 import Landing from "../../Pages/Login/Landing"
 import ProfilePage from "../../Pages/PorfilePage/ProfilePage"
-import { DetailTips } from "../../Pages/Tips page/DetailTips"
-
+import { DetailTips } from "../../Pages/Tipspage/DetailTips"
 
 export const AppRouter = () => {
    
-    // Auth();
+    //  Auth();
 
     
     return (
