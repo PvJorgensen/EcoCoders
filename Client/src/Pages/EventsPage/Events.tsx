@@ -51,7 +51,7 @@ export const Events = () => {
                                 setFilteredEvents(result);
                                 setShowContent(false);
                             }}
-                            suggestionKey='' />
+                            suggestionKey='name' />
                     </div>
                 </div>
 

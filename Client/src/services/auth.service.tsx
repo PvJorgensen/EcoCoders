@@ -2,6 +2,7 @@ import { supabase } from "./clientSupabase";
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
+
 export default function Auth(){
     const navigate = useNavigate();
 
