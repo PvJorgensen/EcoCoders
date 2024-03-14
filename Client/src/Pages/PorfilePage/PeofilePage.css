@@ -15,6 +15,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-bottom: 10rem;
 }
 
 .profile-item {
@@ -31,14 +32,14 @@
 
 .profile-description {
     border: 3px solid #A8DEE6;
-    border-radius: 10px;
+    border-radius: 18px;
     width: 80%;
 }
 
 .profile-events {
     margin-top: 2em;
     border: 3px solid #A8DEE6;
-    border-radius: 10px;
+    border-radius: 18px;
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -147,4 +148,68 @@
     text-decoration: none;
     color: black;
     margin-left: 0;
+}
+
+
+.settings-item>form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-input {
+    border: 2px solid #B9FBC0;
+    border-radius: 6px;
+    text-align: center;
+    color: black;
+    height: 3em;
+    margin-top: 0.5em;
+    width: 75%;
+    font-size: 16px;
+
+}
+
+.settings-form {
+    margin-top: 2em;
+}
+
+.settings-form>textarea {
+    height: 8em;
+}
+
+.settings-button {
+    background-color: #1E6091;
+    border: none;
+    border-radius: 6px;
+    height: 3em;
+    color: white;
+    width: 60%;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    font-size: 18px;
+}
+
+.blue-background-modal .ant-modal-content{
+    background-color: #A8DEE6;
+}
+
+.ant-modal-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+}
+
+.ant-modal-body>form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-family: "Roboto", sans-serif;
+}
+
+.ant-modal-body>form>textarea {
+    font-family: "Roboto", sans-serif;
 }

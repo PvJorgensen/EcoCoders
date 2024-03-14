@@ -7,7 +7,6 @@ import { Button } from "antd";
 import { EnvironmentFilled } from "@ant-design/icons";
 
 
-
 export const EventsPage: React.FC = () => {
   const navigate= useNavigate();
   const openMapPage = () => {
