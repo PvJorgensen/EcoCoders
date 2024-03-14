@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./drawer.css";
-import { EnvironmentFilled, FilterOutlined, PlusCircleFilled, TrophyOutlined, UnorderedListOutlined } from "@ant-design/icons";
+import { EnvironmentFilled, FilterOutlined, PlusCircleFilled, UnorderedListOutlined } from "@ant-design/icons";
 import { setGlobalVariableGreenPoints, setGlobalVariableMarks } from "../const/const";
 import { useNavigate } from "react-router-dom";
 
@@ -79,11 +79,13 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
           setGlobalVariableMarks(false);
           setGlobalVariableGreenPoints(true);
           onClose();
+          navigate('/map');
           break;
         case 'Green Points':
           setGlobalVariableGreenPoints(false);
           setGlobalVariableMarks(true);
           onClose();
+          navigate('/map');
           break;
         case 'Challenges':
           navigate('/challenges');
@@ -95,6 +97,7 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, isfilter }) => {
           setGlobalVariableGreenPoints(false);
           setGlobalVariableMarks(false);
           onClose();
+          navigate('/map');
           break;
         default:
       }

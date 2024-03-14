@@ -35,6 +35,13 @@
     display: flex; 
     flex-direction: column;
     justify-content: space-between;
+    span svg{
+        width: 2rem;
+        height: 2rem;
+    }
+    span {
+        width: 2rem;
+    }
 }
 
 .joinButtom {
