@@ -70,17 +70,20 @@ export const TipsPage = () => {
                 </Card>
 
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '15px' }}>
+
                     <div style={{ width: '100%', maxWidth: '348px' }}>
                         <Searchbar fetchData={fetchData} setResult={(result) => {
                             setResult(result);
                             setShowContent(false); // Hide the content when a suggestion is clicked
-                        }} suggestionKey="category" />
+                        }} suggestionKey="name" />
+
                     </div>
+
                 </div>
 
                 {showContent && ( // Only render the content if showContent is true
 
-                <div style={{ display: 'flex', justifyContent: 'center' }} >
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop:'10px' }} >
                          
                          <div className={styles.gridContainer} >
 
