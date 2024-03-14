@@ -29,7 +29,7 @@ export const Navigation = () => {
       <Link
   className={getMenuActiveItem() === 'Tips' ? styles.active : ''}
   to="/tips"
-  onClick={() => TipsPage.caller.call}
+  onClick={() => TipsPage.call}
 >
   <BulbOutlined />
 </Link>
