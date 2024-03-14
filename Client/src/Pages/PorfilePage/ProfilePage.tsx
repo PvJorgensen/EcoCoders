@@ -122,7 +122,7 @@ function ProfilePage() {
 
   const handleSubmit = async () => {
     try {
-      const response = await axiosInstance.patch(`/User?id=eq.${userData.id}`,{
+      const response = await axiosInstance.put(`/User?id=eq.${userData.id}`,{
         "id": userData.id,
         "name": newUserData.name,
         "description": newUserData.description
@@ -178,7 +178,6 @@ function ProfilePage() {
         <div className='profile-events'>
           <h3>Events Joined:</h3>
           {events.map(event => (
-            <div key={event.id}>
             <Link to={`/event/${event.id}`} className="event-card" key={event.id}>
               <img src={event.imageURL} alt="event image" className='event-image' />
               <div className="event-mainText">
@@ -186,8 +185,6 @@ function ProfilePage() {
                 <p>{event.description.length > 25 ? event.description.substring(0, 25) + '...' : event.description}</p>
               </div>
             </Link>
-            <button key={event.id}>hola</button>
-            </div>
           ))}
         </div>
       </div>

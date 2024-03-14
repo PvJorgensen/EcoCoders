@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { supabase } from "../../services/clientSupabase";
 import "./Landing.css"
+import { useNavigate } from "react-router-dom";
 
 interface User {
-    username: string;
     name: string;
-    last_name: string;
+    description: string;
     role: string;
     email: string;
     auth_id: any;
@@ -18,9 +18,9 @@ const getUserId = async () => {
 }
 
 function Form() {
-    const [username, setUserName] = useState('');
     const [name, setName] = useState('');
-    const [lastName, setlastName] = useState('');
+    const [description, setDescription] = useState('');
+    const navigate = useNavigate(); // Agrega esto
     
     const handleSubmit = async (event: any) => {
         event.preventDefault();
@@ -28,9 +28,8 @@ function Form() {
             const auth_id = await getUserId();
     
             const newUser: User = {
-                username: username,
                 name: name,
-                last_name: lastName,
+                description: description,
                 role: "user",
                 email: "h",
                 auth_id: auth_id,
@@ -44,6 +43,7 @@ function Form() {
             }
 
             console.log("User inserted successfully!");
+            navigate('/home');
         } catch (error: any) {
             console.error("Error inserting user:", error.message);
         }
@@ -55,14 +55,6 @@ function Form() {
                 <h1 className="login-title">YOUR INFO</h1>
                 <input
                     type="text"
-                    name="username"
-                    placeholder="username"
-                    value={username}
-                    className="login-input"
-                    onChange={(event) => setUserName(event.target.value)}
-                />
-                <input
-                    type="text"
                     name="name"
                     placeholder="name"
                     value={name}
@@ -71,11 +63,11 @@ function Form() {
                 />
                 <input
                     type="text"
-                    name="lastName"
-                    placeholder="last name"
-                    value={lastName}
+                    name="description"
+                    placeholder="about you"
+                    value={description}
                     className="login-input"
-                    onChange={(event) => setlastName(event.target.value)}
+                    onChange={(event) => setDescription(event.target.value)}
                 />
                 <button className="login-button" type="submit">SIGN UP</button>
             </form>

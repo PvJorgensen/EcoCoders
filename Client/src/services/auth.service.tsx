@@ -15,7 +15,9 @@ export default function Auth(){
               navigate('/landing')
             }
           } else {
-            navigate('/')
+            if (window.location.pathname !== '/form') {
+              navigate('/')
+            }
           }
         })
     }, [])
