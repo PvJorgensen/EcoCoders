@@ -5,7 +5,7 @@
     font-size: 30px;
     border-radius: 28px;
     width: 95vw;
-    height: 7vh;
+    height: 8vh;
     margin: 2.5%;
     align-items: center;
     margin-top: 40px;
@@ -30,5 +30,6 @@
 
 .navbar a.active {
     transition: 0.3s ease-in-out;
-    transform: scale(1.6) translateY(-10%);
+    transform: scale(1.4) translateY(-13%);
+
 }

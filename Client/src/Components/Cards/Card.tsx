@@ -11,7 +11,9 @@ interface CardProps {
 export const Card: React.FC<CardProps> = ({ title, text, icon, link }) => {
   return (
     <Link to={link} className={styles.card}>
-      <img src={icon} alt="" />
+      <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        <img src={icon} alt="" />
+      </div>
       <div className={styles.textWrapper}>
       <h3>{title}</h3>
       <p>{text}</p>

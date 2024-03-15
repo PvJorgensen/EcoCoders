@@ -52,7 +52,7 @@ export const TipsPage = () => {
 
     return (
         <>
-            <div style={{ justifyContent: 'center' }}>
+            <div style={{ justifyContent: 'center', paddingBottom: '10em' }}>
                 <h2 className={`${styles.h2} `}> <span>Welcome to your</span> <br></br> eco-encyclopedia!</h2>
                 
 

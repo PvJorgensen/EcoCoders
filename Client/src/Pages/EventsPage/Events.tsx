@@ -22,6 +22,7 @@ export const Events = () => {
     const [events, setEvents] = useState<Event[]>([]);
     const [filteredEvents, setFilteredEvents] = useState<Suggestion | null>(null);
     const [showContent, setShowContent] = useState(true);
+  
 
     useEffect(() => {
         async function fetchEvents() {
@@ -42,7 +43,7 @@ export const Events = () => {
 
     return (
         <>
-            <div style={{paddingBottom: '9rem'}}>
+            <div style={{ paddingBottom: '9rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '15px' }}>
                     <div style={{ width: '100%', maxWidth: '348px' }}>
                         <SearchBar
