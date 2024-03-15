@@ -8,7 +8,7 @@ export const HomePage = () => {
     <>
       <Circle />
       <section className={styles.topCard}>
-        <h3>Welcome "Username"</h3>
+        <h3>Welcome back</h3>
         <p>I hope you are eager to start improving the planet and challenge your friends to do different challenges</p>
       </section>
       <Cards />

@@ -74,7 +74,7 @@ const SearchBar: React.FC<Props> = ({ fetchData, setResult, suggestionKey }) => 
           onBlur={handleBlur}
           type="search"
           className={styles['textbox']}
-          placeholder="Search"
+          placeholder=" Search"
           value={value}
           onChange={handleSearchInputChange}
         />

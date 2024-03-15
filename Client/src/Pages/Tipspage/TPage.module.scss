@@ -46,6 +46,9 @@ span {
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     text-align: center;
+    a {
+        text-decoration: none;
+    }
 
 
 }
@@ -89,3 +92,4 @@ span {
 img {
     margin-left: 2px;
 }
+
